@@ -1,8 +1,5 @@
 package exceptions;
 
-/**
- * Created by Tay on 9/8/2017.
- */
 public class IllegalSubraceID extends RuntimeException {
 
     public IllegalSubraceID() {

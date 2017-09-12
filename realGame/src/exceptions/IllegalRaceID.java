@@ -1,6 +1,5 @@
 package exceptions;
 
-
 public class IllegalRaceID extends RuntimeException {
 
     public IllegalRaceID() {
