@@ -8,10 +8,10 @@ public abstract class Human implements Race {
 
     final int strRace = 0;
     final int conRace = 0;
-    final int resRace = 0;
+    final int defRace = 0;
     final int dexRace = 0;
     final int agiRace = 0;
-    final int spdRace = 0;
+    final int focRace = 0;
     final int intRace = 0;
     final int wisRace = 0;
     final int chrRace = 0;
@@ -26,8 +26,8 @@ public abstract class Human implements Race {
         return conRace;
     }
 
-    public int getResRace() {
-        return resRace;
+    public int getDefRace() {
+        return defRace;
     }
 
     public int getDexRace() {
@@ -38,8 +38,8 @@ public abstract class Human implements Race {
         return agiRace;
     }
 
-    public int getSpdRace() {
-        return spdRace;
+    public int getFocRace() {
+        return focRace;
     }
 
     public int getIntRace() {

@@ -3,18 +3,18 @@ package races.elf;
 import races.Race;
 
 public abstract class Elf implements Race {
-    final String subRaceName = "Elf";
-    final int subRaceID = 2;
+    final String raceName = "Elf";
+    final int raceID = 2;
 
-    final int strSubrace = 0;
-    final int conSubrace = 0;
-    final int resSubrace = 0;
-    final int dexSubrace = 0;
-    final int agiSubrace = 0;
-    final int spdSubrace = 0;
-    final int intSubrace = 0;
-    final int wisSubrace = 0;
-    final int chrSubrace = 0;
+    final int strRace = 0;
+    final int conRace = 0;
+    final int defRace = 0;
+    final int dexRace = 0;
+    final int agiRace = 0;
+    final int focRace = 0;
+    final int intRace = 0;
+    final int wisRace = 0;
+    final int chrRace = 0;
 
     // Getters
     //// Attribute Getters
@@ -26,8 +26,8 @@ public abstract class Elf implements Race {
         return conRace;
     }
 
-    public int getResRace() {
-        return resRace;
+    public int getDefRace() {
+        return defRace;
     }
 
     public int getDexRace() {
@@ -38,8 +38,8 @@ public abstract class Elf implements Race {
         return agiRace;
     }
 
-    public int getSpdRace() {
-        return spdRace;
+    public int getFocRace() {
+        return focRace;
     }
 
     public int getIntRace() {
@@ -55,11 +55,11 @@ public abstract class Elf implements Race {
     }
 
     public String getRaceName() {
-        return subRaceName;
+        return raceName;
     }
 
     public int getRaceID() {
-        return subRaceID;
+        return raceID;
     }
 
     // Setters

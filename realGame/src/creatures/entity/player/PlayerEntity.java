@@ -2,7 +2,11 @@ package creatures.entity.player;
 
 import creatures.entity.Entity;
 
-
+/**
+ * The {@code PlayerEntity} class is the superclass of all Player Characters.
+ *
+ * PlayerEntity has atrPoints which are assigned by the Player.
+ */
 public class PlayerEntity extends Entity {
 
     public int strPoints = 0;
@@ -19,18 +23,30 @@ public class PlayerEntity extends Entity {
         updateFinalAttributes();
     }
 
+    /**
+     * updateFinalAttribute inside of {@PlayerEntity} is a method in which a creature's
+     * final stats are calculated.
+     *
+     * This method sets atrFinal to the sum of the following:
+     * +atrBase     {@Creature}
+     * +atrRace     {@Creature}
+     * +atrSubrace  {@Creature}
+     * +atrMainClass{@Enity}
+     * +atrSubClass {@Enity}
+     * +atrPoint    {@PlayerEntity}
+     */
     @Override
     public void updateFinalAttributes() {
         super.updateFinalAttributes();
         strFinal += getStrPoints();
-        conFinal += getStrPoints();
-        resFinal += getStrPoints();
-        dexFinal += getStrPoints();
-        agiFinal += getStrPoints();
-        spdFinal += getStrPoints();
-        intFinal += getStrPoints();
-        wisFinal += getStrPoints();
-        chrFinal += getStrPoints();
+        conFinal += getConPoints();
+        defFinal += getResPoints();
+        dexFinal += getDexPoints();
+        agiFinal += getAgiPoints();
+        focFinal += getSpdPoints();
+        intFinal += getIntPoints();
+        wisFinal += getWisPoints();
+        chrFinal += getChrPoints();
 
     }
 

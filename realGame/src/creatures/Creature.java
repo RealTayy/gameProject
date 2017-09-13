@@ -1,8 +1,17 @@
 package creatures;
 
 import exceptions.IllegalGenderID;
+import exceptions.IllegalSubRaceID;
 import races.Race;
+import races.elf.subclass.Chosen;
+import races.elf.subclass.Wood;
 import races.human.subclass.Dominion;
+import races.human.subclass.Untargot;
+
+/**
+ * The {@code Creature} is a main Superclass of all types of creatures in the game.
+ * This is where a Creature's Race and SubRace is determined
+ */
 
 public abstract class Creature {
     public char genderID = 'M';
@@ -12,26 +21,35 @@ public abstract class Creature {
 
     public int level = 1;
 
-    public int strBase = 5, strFinal = 0, strTemp = 0, strCombat = 0;
-    public int conBase = 5, conFinal = 0, conTemp = 0, conCombat = 0;
-    public int resBase = 5, resFinal = 0, resTemp = 0, resCombat = 0;
-    public int dexBase = 5, dexFinal = 0, dexTemp = 0, dexCombat = 0;
-    public int agiBase = 5, agiFinal = 0, agiTemp = 0, agiCombat = 0;
-    public int spdBase = 5, spdFinal = 0, spdTemp = 0, spdCombat = 0;
-    public int intBase = 5, intFinal = 0, intTemp = 0, intCombat = 0;
-    public int wisBase = 5, wisFinal = 0, wisTemp = 0, wisCombat = 0;
-    public int chrBase = 5, chrFinal = 0, chrTemp = 0, chrCombat = 0;
+    public int strBase = 1, strFinal = 0, strTemp = 0, strCombat = 0;
+    public int conBase = 1, conFinal = 0, conTemp = 0, conCombat = 0;
+    public int defBase = 1, defFinal = 0, defTemp = 0, defCombat = 0;
+    public int dexBase = 1, dexFinal = 0, dexTemp = 0, dexCombat = 0;
+    public int agiBase = 1, agiFinal = 0, agiTemp = 0, agiCombat = 0;
+    public int focBase = 1, focFinal = 0, focTemp = 0, focCombat = 0;
+    public int intBase = 1, intFinal = 0, intTemp = 0, intCombat = 0;
+    public int wisBase = 1, wisFinal = 0, wisTemp = 0, wisCombat = 0;
+    public int chrBase = 1, chrFinal = 0, chrTemp = 0, chrCombat = 0;
 
+    /**
+     * updateFinalAttribute inside of {@Creature} is the base method in which a creature's
+     * final stats are calculated.
+     * <p>
+     * This method sets atrFinal to the sum of the following:
+     * +atrBase     {@Creature}
+     * +atrRace     {@Creature}
+     * +atrSubrace  {@Creature}
+     */
     public void updateFinalAttributes() {
-        strFinal = getStrBase() + race.getStrRace() + race.getStrSubrace();
-        conFinal = getConBase() + race.getConRace() + race.getConSubrace();
-        resFinal = getResBase() + race.getResRace() + race.getResSubrace();
-        dexFinal = getDexBase() + race.getDexRace() + race.getDexSubrace();
-        agiFinal = getAgiBase() + race.getAgiRace() + race.getAgiSubrace();
-        spdFinal = getSpdBase() + race.getSpdRace() + race.getSpdSubrace();
-        intFinal = getIntBase() + race.getIntRace() + race.getIntSubrace();
-        wisFinal = getWisBase() + race.getWisRace() + race.getWisSubrace();
-        chrFinal = getChrBase() + race.getChrRace() + race.getChrSubrace();
+        strFinal = getStrBase() + race.getStrRace() + race.getStrSubRace();
+        conFinal = getConBase() + race.getConRace() + race.getConSubRace();
+        defFinal = getDefBase() + race.getDefRace() + race.getDefSubRace();
+        dexFinal = getDexBase() + race.getDexRace() + race.getDexSubRace();
+        agiFinal = getAgiBase() + race.getAgiRace() + race.getAgiSubRace();
+        focFinal = getFocBase() + race.getFocRace() + race.getFocSubRace();
+        intFinal = getIntBase() + race.getIntRace() + race.getIntSubRace();
+        wisFinal = getWisBase() + race.getWisRace() + race.getWisSubRace();
+        chrFinal = getChrBase() + race.getChrRace() + race.getChrSubRace();
     }
 
     public abstract void updateCombatAttributes();
@@ -42,9 +60,6 @@ public abstract class Creature {
         System.out.println("Name:     " + getCreatureName());
         System.out.printf("Level:    %02d\n", getLevel());
         System.out.println("Gender:   " + getGenderName() + " (ID:" + getGenderID() + ")");
-        System.out.println("----Race/Subrace----");
-        System.out.println("Race:     " + race.getRaceName() + " (ID:" + race.getRaceID() + ")");
-        System.out.println("Subrace:  " + race.getSubraceName() + " (ID:" + race.getSubraceID() + ")");
         System.out.println("-----Attributes-----");
         System.out.printf("Str: %02d | ", getStrFinal());
         System.out.printf("Dex: %02d | ", getDexFinal());
@@ -52,11 +67,12 @@ public abstract class Creature {
         System.out.printf("Con: %02d | ", getConFinal());
         System.out.printf("Agi: %02d | ", getAgiFinal());
         System.out.printf("Wis: %02d \n", getWisFinal());
-        System.out.printf("Res: %02d | ", getResFinal());
-        System.out.printf("Spd: %02d | ", getSpdFinal());
+        System.out.printf("Def: %02d | ", getDefFinal());
+        System.out.printf("Foc: %02d | ", getFocFinal());
         System.out.printf("Chr: %02d \n", getChrFinal());
-        System.out.println("-----Equipment------");
-        System.out.println("-----Inventory------");
+        System.out.println("----Race/SubRace----");
+        System.out.println("Race:     " + race.getRaceName() + " (ID:" + race.getRaceID() + ")");
+        System.out.println("SubRace:  " + race.getSubraceName() + " (ID:" + race.getSubraceID() + ")");
     }
 
     public String creatureName = "none";
@@ -95,20 +111,20 @@ public abstract class Creature {
         return conCombat;
     }
 
-    public int getResBase() {
-        return resBase;
+    public int getDefBase() {
+        return defBase;
     }
 
-    public int getResFinal() {
-        return resFinal;
+    public int getDefFinal() {
+        return defFinal;
     }
 
-    public int getResTemp() {
-        return resTemp;
+    public int getDefTemp() {
+        return defTemp;
     }
 
-    public int getResCombat() {
-        return resCombat;
+    public int getDefCombat() {
+        return defCombat;
     }
 
     public int getDexBase() {
@@ -143,20 +159,20 @@ public abstract class Creature {
         return agiCombat;
     }
 
-    public int getSpdBase() {
-        return spdBase;
+    public int getFocBase() {
+        return focBase;
     }
 
-    public int getSpdFinal() {
-        return spdFinal;
+    public int getFocFinal() {
+        return focFinal;
     }
 
-    public int getSpdTemp() {
-        return spdTemp;
+    public int getFocTemp() {
+        return focTemp;
     }
 
-    public int getSpdCombat() {
-        return spdCombat;
+    public int getFocCombat() {
+        return focCombat;
     }
 
     public int getIntBase() {
@@ -223,6 +239,10 @@ public abstract class Creature {
         return level;
     }
 
+    public Race getRace() {
+        return race;
+    }
+
     // Setters
     //Attribute Setters
     public void setStrBase(int strBase) {
@@ -257,20 +277,20 @@ public abstract class Creature {
         this.conCombat = conCombat;
     }
 
-    public void setResBase(int resBase) {
-        this.resBase = resBase;
+    public void setDefBase(int defBase) {
+        this.defBase = defBase;
     }
 
-    public void setResFinal(int resFinal) {
-        this.resFinal = resFinal;
+    public void setDefFinal(int defFinal) {
+        this.defFinal = defFinal;
     }
 
-    public void setResTemp(int resTemp) {
-        this.resTemp = resTemp;
+    public void setDefTemp(int defTemp) {
+        this.defTemp = defTemp;
     }
 
-    public void setResCombat(int resCombat) {
-        this.resCombat = resCombat;
+    public void setDefCombat(int defCombat) {
+        this.defCombat = defCombat;
     }
 
     public void setDexBase(int dexBase) {
@@ -305,20 +325,20 @@ public abstract class Creature {
         this.agiCombat = agiCombat;
     }
 
-    public void setSpdBase(int spdBase) {
-        this.spdBase = spdBase;
+    public void setFocBase(int focBase) {
+        this.focBase = focBase;
     }
 
-    public void setSpdFinal(int spdFinal) {
-        this.spdFinal = spdFinal;
+    public void setFocFinal(int focFinal) {
+        this.focFinal = focFinal;
     }
 
-    public void setSpdTemp(int spdTemp) {
-        this.spdTemp = spdTemp;
+    public void setFocTemp(int focTemp) {
+        this.focTemp = focTemp;
     }
 
-    public void setSpdCombat(int spdCombat) {
-        this.spdCombat = spdCombat;
+    public void setFocCombat(int focCombat) {
+        this.focCombat = focCombat;
     }
 
     public void setIntBase(int intBase) {
@@ -376,9 +396,10 @@ public abstract class Creature {
     /**
      * Takes given genderID and sets the genderID and genderName to the correct gender
      * throws IllegalGenderIF if entered genderID is not valid
-     *      Current Genders:
-     *      > (M) Male
-     *      > (F) Female
+     * Current Genders:
+     * > (M) Male
+     * > (F) Female
+     *
      * @param genderID
      * @throws IllegalGenderID if not valid genderIF
      */
@@ -389,7 +410,7 @@ public abstract class Creature {
             this.genderID = genderID;
             if (genderID == 'M') {
                 this.genderName = ("Male");
-            } else if (genderID == 'F'){
+            } else if (genderID == 'F') {
                 this.genderName = ("Female");
             }
         }
@@ -398,9 +419,10 @@ public abstract class Creature {
     /**
      * Takes given genderName and sets the genderName and genderID to the correct gender
      * throws IllegalGenderIF if entered genderName is not valid
-     *      Current Genders:
-     *      > Male (M)
-     *      > Female (F)
+     * Current Genders:
+     * > Male (M)
+     * > Female (F)
+     *
      * @param genderName
      * @throws IllegalGenderID if not valid genderIF
      */
@@ -419,5 +441,31 @@ public abstract class Creature {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    /**
+     * Sets a creature.race to a specified Race instance.
+     * Changes creatures's raceName/SubraceName and raceID/SubraceID to the appropriate values.
+     * Changes atrRace/atrSubrace to the appropriate values
+     *
+     * @param subRaceID changes the above according to the subRaceID given. subRaceID values can be
+     *                  found inside each subRace Class. A master list can be found in {@Race}
+     */
+    public void setRace(int subRaceID) {
+        switch (subRaceID) {
+            case 101:
+                race = new Dominion();
+                break;
+            case 102:
+                race = new Untargot();
+                break;
+            case 201:
+                race = new Chosen();
+                break;
+            case 202:
+                race = new Wood();
+                break;
+            default: throw new IllegalSubRaceID(subRaceID);
+        }
     }
 }

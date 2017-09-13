@@ -6,52 +6,52 @@ public class Dominion extends Human {
     final String subRaceName = "Dominion";
     final int subRaceID = 101;
 
-    final int strSubrace = 0;
-    final int conSubrace = 0;
-    final int resSubrace = 0;
-    final int dexSubrace = 0;
-    final int agiSubrace = 0;
-    final int spdSubrace = 0;
-    final int intSubrace = 0;
-    final int wisSubrace = 0;
-    final int chrSubrace = 0;
+    int strSubRace = 0;
+    int conSubRace = 0;
+    int defSubRace = 0;
+    int dexSubRace = 0;
+    int agiSubRace = 0;
+    int focSubRace = 0;
+    int intSubRace = 0;
+    int wisSubRace = 0;
+    int chrSubRace = 0;
 
     // Getters
     //// Attribute Getters
-    public int getStrSubrace() {
-        return strSubrace;
+    public int getStrSubRace() {
+        return strSubRace;
     }
 
-    public int getConSubrace() {
-        return conSubrace;
+    public int getConSubRace() {
+        return conSubRace;
     }
 
-    public int getResSubrace() {
-        return resSubrace;
+    public int getDefSubRace() {
+        return defSubRace;
     }
 
-    public int getDexSubrace() {
-        return dexSubrace;
+    public int getDexSubRace() {
+        return dexSubRace;
     }
 
-    public int getAgiSubrace() {
-        return agiSubrace;
+    public int getAgiSubRace() {
+        return agiSubRace;
     }
 
-    public int getSpdSubrace() {
-        return spdSubrace;
+    public int getFocSubRace() {
+        return focSubRace;
     }
 
-    public int getIntSubrace() {
-        return intSubrace;
+    public int getIntSubRace() {
+        return intSubRace;
     }
 
-    public int getWisSubrace() {
-        return wisSubrace;
+    public int getWisSubRace() {
+        return wisSubRace;
     }
 
-    public int getChrSubrace() {
-        return chrSubrace;
+    public int getChrSubRace() {
+        return chrSubRace;
     }
 
     public String getSubraceName() {
