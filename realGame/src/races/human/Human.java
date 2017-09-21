@@ -8,13 +8,10 @@ public abstract class Human implements Race {
 
     final int strRace = 0;
     final int conRace = 0;
-    final int defRace = 0;
     final int dexRace = 0;
-    final int agiRace = 0;
     final int focRace = 0;
     final int intRace = 0;
-    final int wisRace = 0;
-    final int chrRace = 0;
+    final int witRace = 0;
 
     // Getters
     //// Attribute Getters
@@ -26,16 +23,8 @@ public abstract class Human implements Race {
         return conRace;
     }
 
-    public int getDefRace() {
-        return defRace;
-    }
-
     public int getDexRace() {
         return dexRace;
-    }
-
-    public int getAgiRace() {
-        return agiRace;
     }
 
     public int getFocRace() {
@@ -46,12 +35,8 @@ public abstract class Human implements Race {
         return intRace;
     }
 
-    public int getWisRace() {
-        return wisRace;
-    }
-
-    public int getChrRace() {
-        return chrRace;
+    public int getWitRace() {
+        return witRace;
     }
 
     public String getRaceName() {

@@ -6,15 +6,12 @@ public class Untargot extends Human {
     final String subRaceName = "Untargot";
     final int subRaceID = 102;
 
-    int strSubRace = 0;
-    int conSubRace = 0;
-    int defSubRace = 0;
-    int dexSubRace = 0;
-    int agiSubRace = 0;
-    int focSubRace = 0;
-    int intSubRace = 0;
-    int wisSubRace = 0;
-    int chrSubRace = 0;
+    final int strSubRace = 0;
+    final int conSubRace = 0;
+    final int dexSubRace = 0;
+    final int focSubRace = 0;
+    final int intSubRace = 0;
+    final int witSubRace = 0;
 
     // Getters
     //// Attribute Getters
@@ -26,16 +23,8 @@ public class Untargot extends Human {
         return conSubRace;
     }
 
-    public int getDefSubRace() {
-        return defSubRace;
-    }
-
     public int getDexSubRace() {
         return dexSubRace;
-    }
-
-    public int getAgiSubRace() {
-        return agiSubRace;
     }
 
     public int getFocSubRace() {
@@ -46,12 +35,8 @@ public class Untargot extends Human {
         return intSubRace;
     }
 
-    public int getWisSubRace() {
-        return wisSubRace;
-    }
-
-    public int getChrSubRace() {
-        return chrSubRace;
+    public int getWitSubRace() {
+        return witSubRace;
     }
 
     public String getSubraceName() {

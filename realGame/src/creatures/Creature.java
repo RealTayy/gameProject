@@ -17,19 +17,17 @@ public abstract class Creature {
     public char genderID = 'M';
     public String genderName = "Male";
 
+    //A Creature race is determined by setting variable {race} to a subRace class. See method {setRace} for more details
     public Race race = new Dominion();
 
     public int level = 1;
 
     public int strBase = 1, strFinal = 0, strTemp = 0, strCombat = 0;
     public int conBase = 1, conFinal = 0, conTemp = 0, conCombat = 0;
-    public int defBase = 1, defFinal = 0, defTemp = 0, defCombat = 0;
     public int dexBase = 1, dexFinal = 0, dexTemp = 0, dexCombat = 0;
-    public int agiBase = 1, agiFinal = 0, agiTemp = 0, agiCombat = 0;
     public int focBase = 1, focFinal = 0, focTemp = 0, focCombat = 0;
     public int intBase = 1, intFinal = 0, intTemp = 0, intCombat = 0;
-    public int wisBase = 1, wisFinal = 0, wisTemp = 0, wisCombat = 0;
-    public int chrBase = 1, chrFinal = 0, chrTemp = 0, chrCombat = 0;
+    public int witBase = 1, witFinal = 0, witTemp = 0, witCombat = 0;
 
     /**
      * updateFinalAttribute inside of {@Creature} is the base method in which a creature's
@@ -43,13 +41,10 @@ public abstract class Creature {
     public void updateFinalAttributes() {
         strFinal = getStrBase() + race.getStrRace() + race.getStrSubRace();
         conFinal = getConBase() + race.getConRace() + race.getConSubRace();
-        defFinal = getDefBase() + race.getDefRace() + race.getDefSubRace();
         dexFinal = getDexBase() + race.getDexRace() + race.getDexSubRace();
-        agiFinal = getAgiBase() + race.getAgiRace() + race.getAgiSubRace();
         focFinal = getFocBase() + race.getFocRace() + race.getFocSubRace();
         intFinal = getIntBase() + race.getIntRace() + race.getIntSubRace();
-        wisFinal = getWisBase() + race.getWisRace() + race.getWisSubRace();
-        chrFinal = getChrBase() + race.getChrRace() + race.getChrSubRace();
+        witFinal = getWitBase() + race.getWitRace() + race.getWitSubRace();
     }
 
     public abstract void updateCombatAttributes();
@@ -60,19 +55,16 @@ public abstract class Creature {
         System.out.println("Name:     " + getCreatureName());
         System.out.printf("Level:    %02d\n", getLevel());
         System.out.println("Gender:   " + getGenderName() + " (ID:" + getGenderID() + ")");
-        System.out.println("-----Attributes-----");
-        System.out.printf("Str: %02d | ", getStrFinal());
-        System.out.printf("Dex: %02d | ", getDexFinal());
-        System.out.printf("Int: %02d \n", getIntFinal());
-        System.out.printf("Con: %02d | ", getConFinal());
-        System.out.printf("Agi: %02d | ", getAgiFinal());
-        System.out.printf("Wis: %02d \n", getWisFinal());
-        System.out.printf("Def: %02d | ", getDefFinal());
-        System.out.printf("Foc: %02d | ", getFocFinal());
-        System.out.printf("Chr: %02d \n", getChrFinal());
         System.out.println("----Race/SubRace----");
         System.out.println("Race:     " + race.getRaceName() + " (ID:" + race.getRaceID() + ")");
         System.out.println("SubRace:  " + race.getSubraceName() + " (ID:" + race.getSubraceID() + ")");
+        System.out.println("-----Attributes-----");
+        System.out.printf("Str: %02d | ", getStrFinal());
+        System.out.printf("Con: %02d \n", getConFinal());
+        System.out.printf("Dex: %02d | ", getDexFinal());
+        System.out.printf("Foc: %02d \n", getFocFinal());
+        System.out.printf("Int: %02d | ", getIntFinal());
+        System.out.printf("Wit: %02d \n", getWitFinal());
     }
 
     public String creatureName = "none";
@@ -111,22 +103,6 @@ public abstract class Creature {
         return conCombat;
     }
 
-    public int getDefBase() {
-        return defBase;
-    }
-
-    public int getDefFinal() {
-        return defFinal;
-    }
-
-    public int getDefTemp() {
-        return defTemp;
-    }
-
-    public int getDefCombat() {
-        return defCombat;
-    }
-
     public int getDexBase() {
         return dexBase;
     }
@@ -141,22 +117,6 @@ public abstract class Creature {
 
     public int getDexCombat() {
         return dexCombat;
-    }
-
-    public int getAgiBase() {
-        return agiBase;
-    }
-
-    public int getAgiFinal() {
-        return agiFinal;
-    }
-
-    public int getAgiTemp() {
-        return agiTemp;
-    }
-
-    public int getAgiCombat() {
-        return agiCombat;
     }
 
     public int getFocBase() {
@@ -191,36 +151,20 @@ public abstract class Creature {
         return intCombat;
     }
 
-    public int getWisBase() {
-        return wisBase;
+    public int getWitBase() {
+        return witBase;
     }
 
-    public int getWisFinal() {
-        return wisFinal;
+    public int getWitFinal() {
+        return witFinal;
     }
 
-    public int getWisTemp() {
-        return wisTemp;
+    public int getWitTemp() {
+        return witTemp;
     }
 
-    public int getWisCombat() {
-        return wisCombat;
-    }
-
-    public int getChrBase() {
-        return chrBase;
-    }
-
-    public int getChrFinal() {
-        return chrFinal;
-    }
-
-    public int getChrTemp() {
-        return chrTemp;
-    }
-
-    public int getChrCombat() {
-        return chrCombat;
+    public int getWitCombat() {
+        return witCombat;
     }
 
     public String getCreatureName() {
@@ -277,22 +221,6 @@ public abstract class Creature {
         this.conCombat = conCombat;
     }
 
-    public void setDefBase(int defBase) {
-        this.defBase = defBase;
-    }
-
-    public void setDefFinal(int defFinal) {
-        this.defFinal = defFinal;
-    }
-
-    public void setDefTemp(int defTemp) {
-        this.defTemp = defTemp;
-    }
-
-    public void setDefCombat(int defCombat) {
-        this.defCombat = defCombat;
-    }
-
     public void setDexBase(int dexBase) {
         this.dexBase = dexBase;
     }
@@ -307,22 +235,6 @@ public abstract class Creature {
 
     public void setDexCombat(int dexCombat) {
         this.dexCombat = dexCombat;
-    }
-
-    public void setAgiBase(int agiBase) {
-        this.agiBase = agiBase;
-    }
-
-    public void setAgiFinal(int agiFinal) {
-        this.agiFinal = agiFinal;
-    }
-
-    public void setAgiTemp(int agiTemp) {
-        this.agiTemp = agiTemp;
-    }
-
-    public void setAgiCombat(int agiCombat) {
-        this.agiCombat = agiCombat;
     }
 
     public void setFocBase(int focBase) {
@@ -357,36 +269,20 @@ public abstract class Creature {
         this.intCombat = intCombat;
     }
 
-    public void setWisBase(int wisBase) {
-        this.wisBase = wisBase;
+    public void setWitBase(int witBase) {
+        this.witBase = witBase;
     }
 
-    public void setWisFinal(int wisFinal) {
-        this.wisFinal = wisFinal;
+    public void setWitFinal(int witFinal) {
+        this.witFinal = witFinal;
     }
 
-    public void setWisTemp(int wisTemp) {
-        this.wisTemp = wisTemp;
+    public void setWitTemp(int witTemp) {
+        this.witTemp = witTemp;
     }
 
-    public void setWisCombat(int wisCombat) {
-        this.wisCombat = wisCombat;
-    }
-
-    public void setChrBase(int chrBase) {
-        this.chrBase = chrBase;
-    }
-
-    public void setChrFinal(int chrFinal) {
-        this.chrFinal = chrFinal;
-    }
-
-    public void setChrTemp(int chrTemp) {
-        this.chrTemp = chrTemp;
-    }
-
-    public void setChrCombat(int chrCombat) {
-        this.chrCombat = chrCombat;
+    public void setWitCombat(int witCombat) {
+        this.witCombat = witCombat;
     }
 
     public void setCreatureName(String creatureName) {

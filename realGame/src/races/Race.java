@@ -21,13 +21,12 @@ public interface Race {
 
     int strRace = 0, strSubRace = 0;
     int conRace = 0, conSubRace = 0;
-    int defRace = 0, defSubRace = 0;
     int dexRace = 0, dexSubRace = 0;
-    int agiRace = 0, agiSubRace = 0;
     int focRace = 0, focSubRace = 0;
     int intRace = 0, intSubRace = 0;
-    int wisRace = 0, wisSubRace = 0;
-    int chrRace = 0, chrSubRace = 0;
+    int witRace = 0, witSubRace = 0;
+
+
 
     String getRaceName();
     int getRaceID();
@@ -37,21 +36,16 @@ public interface Race {
 
     int getStrRace();
     int getConRace();
-    int getDefRace();
     int getDexRace();
-    int getAgiRace();
     int getFocRace();
     int getIntRace();
-    int getWisRace();
-    int getChrRace();
+    int getWitRace();
 
     int getStrSubRace();
     int getConSubRace();
-    int getDefSubRace();
     int getDexSubRace();
-    int getAgiSubRace();
     int getFocSubRace();
     int getIntSubRace();
-    int getWisSubRace();
-    int getChrSubRace();
+    int getWitSubRace();
+
 }
