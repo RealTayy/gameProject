@@ -3,49 +3,31 @@ package races.human.subclass;
 import races.human.Human;
 
 public class Untargot extends Human {
-    final String subRaceName = "Untargot";
-    final int subRaceID = 102;
 
-    final int strSubRace = 0;
-    final int conSubRace = 0;
-    final int dexSubRace = 0;
-    final int focSubRace = 0;
-    final int intSubRace = 0;
-    final int witSubRace = 0;
+    public Untargot() {
+        super();
 
-    // Getters
-    //// Attribute Getters
-    public int getStrSubRace() {
-        return strSubRace;
+        //Sets Subrace Name and ID
+        setSubraceName("Untargot");
+        setSubraceID(102);
+
+        //Sets Subrace Attributes
+        setStrSubrace(5);
+        setConSubrace(5);
+        setDexSubrace(5);
+        setFocSubrace(5);
+        setIntSubrace(5);
+        setWitSubrace(5);
+
+        //Sets Subrace Skills
+        setSkillAthSubrace(5);
+        setSkillEndSubrace(5);
+        setSkillSurSubrace(5);
+        setSkillPerSubrace(5);
+        setSkillResSubrace(5);
+        setSkillRefSubrace(5);
+        setSkillInsSubrace(5);
+        setSkillKnoSubrace(5);
+        setSkillChaSubrace(5);
     }
-
-    public int getConSubRace() {
-        return conSubRace;
-    }
-
-    public int getDexSubRace() {
-        return dexSubRace;
-    }
-
-    public int getFocSubRace() {
-        return focSubRace;
-    }
-
-    public int getIntSubRace() {
-        return intSubRace;
-    }
-
-    public int getWitSubRace() {
-        return witSubRace;
-    }
-
-    public String getSubraceName() {
-        return subRaceName;
-    }
-
-    public int getSubraceID() {
-        return subRaceID;
-    }
-
-    // Setters
 }

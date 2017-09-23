@@ -39,12 +39,12 @@ public abstract class Creature {
      * +atrSubrace  {@Creature}
      */
     public void updateFinalAttributes() {
-        strFinal = getStrBase() + race.getStrRace() + race.getStrSubRace();
-        conFinal = getConBase() + race.getConRace() + race.getConSubRace();
-        dexFinal = getDexBase() + race.getDexRace() + race.getDexSubRace();
-        focFinal = getFocBase() + race.getFocRace() + race.getFocSubRace();
-        intFinal = getIntBase() + race.getIntRace() + race.getIntSubRace();
-        witFinal = getWitBase() + race.getWitRace() + race.getWitSubRace();
+        strFinal = getStrBase() + race.getStrRace() + race.getStrSubrace();
+        conFinal = getConBase() + race.getConRace() + race.getConSubrace();
+        dexFinal = getDexBase() + race.getDexRace() + race.getDexSubrace();
+        focFinal = getFocBase() + race.getFocRace() + race.getFocSubrace();
+        intFinal = getIntBase() + race.getIntRace() + race.getIntSubrace();
+        witFinal = getWitBase() + race.getWitRace() + race.getWitSubrace();
     }
 
     public abstract void updateCombatAttributes();

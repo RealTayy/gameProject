@@ -9,8 +9,8 @@ import creatures.entity.Entity;
  */
 public class PlayerEntity extends Entity {
 
-    public PlayerEntity() {
-        updateFinalAttributes();
+    public PlayerEntity(int potentialLevel) {
+        super(potentialLevel);
     }
 
     /**

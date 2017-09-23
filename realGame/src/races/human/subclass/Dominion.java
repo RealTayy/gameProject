@@ -3,49 +3,31 @@ package races.human.subclass;
 import races.human.Human;
 
 public class Dominion extends Human {
-    final String subRaceName = "Dominion";
-    final int subRaceID = 101;
 
-    final int strSubRace = 0;
-    final int conSubRace = 0;
-    final int dexSubRace = 0;
-    final int focSubRace = 0;
-    final int intSubRace = 0;
-    final int witSubRace = 0;
+    public Dominion() {
+        super();
 
-    // Getters
-    //// Attribute Getters
-    public int getStrSubRace() {
-        return strSubRace;
+        //Sets Subrace Name and ID
+        setSubraceName("Dominion");
+        setSubraceID(101);
+
+        //Sets Subrace Attributes
+        setStrSubrace(genRandomAttributeRange(3));
+        setConSubrace(genRandomAttributeRange(3));
+        setDexSubrace(genRandomAttributeRange(3));
+        setFocSubrace(genRandomAttributeRange(3));
+        setIntSubrace(genRandomAttributeRange(3));
+        setWitSubrace(genRandomAttributeRange(3));
+
+        //Sets Subrace Skills
+        setSkillAthSubrace(genRandomSkillRange(2));
+        setSkillEndSubrace(genRandomSkillRange(2));
+        setSkillSurSubrace(genRandomSkillRange(4));
+        setSkillPerSubrace(genRandomSkillRange(9));
+        setSkillResSubrace(genRandomSkillRange(4));
+        setSkillRefSubrace(genRandomSkillRange(6));
+        setSkillInsSubrace(genRandomSkillRange(3));
+        setSkillKnoSubrace(genRandomSkillRange(9));
+        setSkillChaSubrace(genRandomSkillRange(6));
     }
-
-    public int getConSubRace() {
-        return conSubRace;
-    }
-
-    public int getDexSubRace() {
-        return dexSubRace;
-    }
-
-    public int getFocSubRace() {
-        return focSubRace;
-    }
-
-    public int getIntSubRace() {
-        return intSubRace;
-    }
-
-    public int getWitSubRace() {
-        return witSubRace;
-    }
-
-    public String getSubraceName() {
-        return subRaceName;
-    }
-
-    public int getSubraceID() {
-        return subRaceID;
-    }
-
-    // Setters
 }

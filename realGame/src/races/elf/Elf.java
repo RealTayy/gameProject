@@ -2,50 +2,30 @@ package races.elf;
 
 import races.Race;
 
-public abstract class Elf implements Race {
-    final String raceName = "Elf";
-    final int raceID = 2;
+public abstract class Elf extends Race {
 
-    final int strRace = 0;
-    final int conRace = 0;
-    final int dexRace = 0;
-    final int focRace = 0;
-    final int intRace = 0;
-    final int witRace = 0;
+    public Elf() {
+        //Sets Race Name and ID
+        setRaceName("Elf");
+        setRaceID(2);
 
-    // Getters
-    //// Attribute Getters
-    public int getStrRace() {
-        return strRace;
+        //Sets Race Attributes
+        setStrRace(5);
+        setConRace(5);
+        setDexRace(5);
+        setFocRace(5);
+        setIntRace(5);
+        setWitRace(5);
+
+        //Sets Race Skills
+        setSkillAthRace(5);
+        setSkillEndRace(5);
+        setSkillSurRace(5);
+        setSkillPerRace(5);
+        setSkillResRace(5);
+        setSkillRefRace(5);
+        setSkillInsRace(5);
+        setSkillKnoRace(5);
+        setSkillChaRace(5);
     }
-
-    public int getConRace() {
-        return conRace;
-    }
-
-    public int getDexRace() {
-        return dexRace;
-    }
-
-    public int getFocRace() {
-        return focRace;
-    }
-
-    public int getIntRace() {
-        return intRace;
-    }
-
-    public int getWitRace() {
-        return witRace;
-    }
-
-    public String getRaceName() {
-        return raceName;
-    }
-
-    public int getRaceID() {
-        return raceID;
-    }
-
-    // Setters
 }

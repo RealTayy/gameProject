@@ -2,50 +2,30 @@ package races.human;
 
 import races.Race;
 
-public abstract class Human implements Race {
-    final String raceName = "Human";
-    final int raceID = 1;
+public abstract class Human extends Race {
 
-    final int strRace = 0;
-    final int conRace = 0;
-    final int dexRace = 0;
-    final int focRace = 0;
-    final int intRace = 0;
-    final int witRace = 0;
+    public Human() {
+        //Sets Race Name and ID
+        setRaceName("Human");
+        setRaceID(1);
 
-    // Getters
-    //// Attribute Getters
-    public int getStrRace() {
-        return strRace;
+        //Sets Race Attributes
+        setStrRace(genRandomAttributeRange(3));
+        setConRace(genRandomAttributeRange(3));
+        setDexRace(genRandomAttributeRange(3));
+        setFocRace(genRandomAttributeRange(3));
+        setIntRace(genRandomAttributeRange(3));
+        setWitRace(genRandomAttributeRange(3));
+
+        //Sets Race Skills
+        setSkillAthRace(genRandomSkillRange(3));
+        setSkillEndRace(genRandomSkillRange(3));
+        setSkillSurRace(genRandomSkillRange(7));
+        setSkillPerRace(genRandomSkillRange(8));
+        setSkillResRace(genRandomSkillRange(6));
+        setSkillRefRace(genRandomSkillRange(7));
+        setSkillInsRace(genRandomSkillRange(5));
+        setSkillKnoRace(genRandomSkillRange(7));
+        setSkillChaRace(genRandomSkillRange(7));
     }
-
-    public int getConRace() {
-        return conRace;
-    }
-
-    public int getDexRace() {
-        return dexRace;
-    }
-
-    public int getFocRace() {
-        return focRace;
-    }
-
-    public int getIntRace() {
-        return intRace;
-    }
-
-    public int getWitRace() {
-        return witRace;
-    }
-
-    public String getRaceName() {
-        return raceName;
-    }
-
-    public int getRaceID() {
-        return raceID;
-    }
-
-    // Setters
 }

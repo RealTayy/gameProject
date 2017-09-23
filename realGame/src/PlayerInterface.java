@@ -5,8 +5,9 @@ import races.human.subclass.*;
 public class PlayerInterface {
 
     public static void main(String[] args) {
-        PlayerEntity testEntity = new PlayerEntity();
-        testEntity.setRace(102);
+        PlayerEntity testEntity = new PlayerEntity(2);
+        testEntity.calculateMaxAttributeRank();
+        testEntity.calculateMaxSkillRank();
         testEntity.updateFinalAttributes();
         testEntity.printInfo();
     }
@@ -15,7 +16,11 @@ public class PlayerInterface {
     Determine Class paths and shit yo...
     https://img03.deviantart.net/b77b/i/2016/186/c/9/useful__rpg__classes_chart_by_halgalaz-da8uwfv.png
 
-    Working in Entity. Trying to determine max Rank per race and what nots.
+    calculateMaxAttributeRank see if you want to randomize base potential for each attr vs blanket?
+
+    update calculateMaxSkillRank
+
+
 
     damage types
     Physical
@@ -25,22 +30,22 @@ public class PlayerInterface {
     Light
     Dark
 
-str 123456
-dex 123456
-con 123456
-wit 123456
-foc 123456
-int 123456
+str Str 123456
+dex Dex 123456
+con Con 123456
+wit Wit 123456
+foc Foc 123456
+int Int 123456
 
-Athletics       Str Dex
-Endurance       Con Foc
-Survival        Int Str
-Perception      Foc Wit
-Resilience      Wit Con
-Reflex          Dex Int
-Insight         Foc Wit
-Knowledge       Int Foc
-Charisma        Wit Int
+ath Athletics       Str Dex
+end Endurance       Con Foc
+sur Survival        Int Str
+per Perception      Foc Wit
+res Resilience      Wit Con
+ref Reflex          Dex Int
+ins Insight         Foc Wit
+kno Knowledge       Int Foc
+cha Charisma        Wit Int
 
 
 

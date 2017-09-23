@@ -1,52 +1,33 @@
 package races.elf.subclass;
 
-import races.Race;
 import races.elf.Elf;
 
-public class Wood extends Elf implements Race {
-    final String subRaceName = "Wood";
-    final int subRaceID = 202;
+public class Wood extends Elf {
 
-    final int strSubRace = 0;
-    final int conSubRace = 0;
-    final int dexSubRace = 0;
-    final int focSubRace = 0;
-    final int intSubRace = 0;
-    final int witSubRace = 0;
+    public Wood() {
+        super();
 
-    // Getters
-    //// Attribute Getters
-    public int getStrSubRace() {
-        return strSubRace;
+        //Sets Subrace Name and ID
+        setSubraceName("Wood");
+        setSubraceID(202);
+
+        //Sets Subrace Attributes
+        setStrSubrace(5);
+        setConSubrace(5);
+        setDexSubrace(5);
+        setFocSubrace(5);
+        setIntSubrace(5);
+        setWitSubrace(5);
+
+        //Sets Subrace Skills
+        setSkillAthSubrace(5);
+        setSkillEndSubrace(5);
+        setSkillSurSubrace(5);
+        setSkillPerSubrace(5);
+        setSkillResSubrace(5);
+        setSkillRefSubrace(5);
+        setSkillInsSubrace(5);
+        setSkillKnoSubrace(5);
+        setSkillChaSubrace(5);
     }
-
-    public int getConSubRace() {
-        return conSubRace;
-    }
-
-    public int getDexSubRace() {
-        return dexSubRace;
-    }
-
-    public int getFocSubRace() {
-        return focSubRace;
-    }
-
-    public int getIntSubRace() {
-        return intSubRace;
-    }
-
-    public int getWitSubRace() {
-        return witSubRace;
-    }
-
-    public String getSubraceName() {
-        return subRaceName;
-    }
-
-    public int getSubraceID() {
-        return subRaceID;
-    }
-
-    // Setters
 }
