@@ -42,15 +42,15 @@ public abstract class Race {
     public int intRace = 0, intSubrace = 0;
     public int witRace = 0, witSubrace = 0;
 
-    public int skillAthRace = -1, skillAthSubrace = -1;
-    public int skillEndRace = -1, skillEndSubrace = -1;
-    public int skillSurRace = -1, skillSurSubrace = -1;
-    public int skillPerRace = -1, skillPerSubrace = -1;
-    public int skillResRace = -1, skillResSubrace = -1;
-    public int skillRefRace = -1, skillRefSubrace = -1;
-    public int skillInsRace = -1, skillInsSubrace = -1;
-    public int skillKnoRace = -1, skillKnoSubrace = -1;
-    public int skillChaRace = -1, skillChaSubrace = -1;
+    public int skillAthRace = 0, skillAthSubrace = 0;
+    public int skillEndRace = 0, skillEndSubrace = 0;
+    public int skillSurRace = 0, skillSurSubrace = 0;
+    public int skillPerRace = 0, skillPerSubrace = 0;
+    public int skillResRace = 0, skillResSubrace = 0;
+    public int skillRefRace = 0, skillRefSubrace = 0;
+    public int skillInsRace = 0, skillInsSubrace = 0;
+    public int skillKnoRace = 0, skillKnoSubrace = 0;
+    public int skillChaRace = 0, skillChaSubrace = 0;
 
     final int lowerRaceRange = 0;
     final int upperRaceRange = 10;
@@ -83,6 +83,16 @@ public abstract class Race {
         Random rand = new Random();
         return rand.nextInt(range + 1) + lowerBound;
     }
+
+
+
+
+
+
+
+
+
+
 
     // Getters
     // Attribute Getters

@@ -14,280 +14,85 @@ import races.human.subclass.Untargot;
  */
 
 public abstract class Creature {
-    public char genderID = 'M';
-    public String genderName = "Male";
+    public String creatureName = "none";
+
+    private char genderID = 'M';
+    private String genderName = "Male";
 
     //A Creature race is determined by setting variable {race} to a subRace class. See method {setRace} for more details
     public Race race = new Dominion();
 
-    public int level = 1;
+    public int strFinal = 0;
+    public int dexFinal = 0;
+    public int conFinal = 0;
+    public int witFinal = 0;
+    public int focFinal = 0;
+    public int intFinal = 0;
+    public int curTotalAttributes = 0;
+    public int maxTotalAttributes = 6 * 20; // Number of Attributes * Max Attribute Final
 
-    public int strBase = 1, strFinal = 0, strTemp = 0, strCombat = 0;
-    public int conBase = 1, conFinal = 0, conTemp = 0, conCombat = 0;
-    public int dexBase = 1, dexFinal = 0, dexTemp = 0, dexCombat = 0;
-    public int focBase = 1, focFinal = 0, focTemp = 0, focCombat = 0;
-    public int intBase = 1, intFinal = 0, intTemp = 0, intCombat = 0;
-    public int witBase = 1, witFinal = 0, witTemp = 0, witCombat = 0;
+    public int skillAthFinal = 0;
+    public int skillEndFinal = 0;
+    public int skillSurFinal = 0;
+    public int skillPerFinal = 0;
+    public int skillResFinal = 0;
+    public int skillRefFinal = 0;
+    public int skillInsFinal = 0;
+    public int skillKnoFinal = 0;
+    public int skillChaFinal = 0;
+    public int curTotalSkill = 0;
+    public int maxTotalSkill = 9 * 50; // Number of Skills * Max Skill Final
 
-    /**
-     * updateFinalAttribute inside of {@Creature} is the base method in which a creature's
-     * final stats are calculated.
-     * <p>
-     * This method sets atrFinal to the sum of the following:
-     * +atrBase     {@Creature}
-     * +atrRace     {@Creature}
-     * +atrSubrace  {@Creature}
-     */
-    public void updateFinalAttributes() {
-        strFinal = getStrBase() + race.getStrRace() + race.getStrSubrace();
-        conFinal = getConBase() + race.getConRace() + race.getConSubrace();
-        dexFinal = getDexBase() + race.getDexRace() + race.getDexSubrace();
-        focFinal = getFocBase() + race.getFocRace() + race.getFocSubrace();
-        intFinal = getIntBase() + race.getIntRace() + race.getIntSubrace();
-        witFinal = getWitBase() + race.getWitRace() + race.getWitSubrace();
+    public Creature() {
+
     }
-
-    public abstract void updateCombatAttributes();
 
     public void printInfo() {
         System.out.println("Printing Information for " + creatureName);
         System.out.println("------Details-------");
-        System.out.println("Name:     " + getCreatureName());
-        System.out.printf("Level:    %02d\n", getLevel());
-        System.out.println("Gender:   " + getGenderName() + " (ID:" + getGenderID() + ")");
+        System.out.println("Name:     " + creatureName);
+        System.out.printf("Ranking:  %02d\n", 99999999);
+        System.out.printf("Att Rank: %02d\n", 99999999);
+        System.out.printf("Skl Rank: %02d\n", 99999999);
+        System.out.println("Gender:   " + genderName + " (ID:" + genderID + ")");
         System.out.println("----Race/SubRace----");
         System.out.println("Race:     " + race.getRaceName() + " (ID:" + race.getRaceID() + ")");
         System.out.println("SubRace:  " + race.getSubraceName() + " (ID:" + race.getSubraceID() + ")");
-        System.out.println("-----Attributes-----");
-        System.out.printf("Str: %02d | ", getStrFinal());
-        System.out.printf("Con: %02d \n", getConFinal());
-        System.out.printf("Dex: %02d | ", getDexFinal());
-        System.out.printf("Foc: %02d \n", getFocFinal());
-        System.out.printf("Int: %02d | ", getIntFinal());
-        System.out.printf("Wit: %02d \n", getWitFinal());
+        System.out.println("-----Attributes---|=|-----------Skills-----------");
+        System.out.printf("Str: %02d | ", strFinal);
+        System.out.printf("Con: %02d |=| ", dexFinal);
+        System.out.printf("Ath: %02d | ", skillAthFinal);
+        System.out.printf("End: %02d | ", skillEndFinal);
+        System.out.printf("Sur: %02d \n", skillSurFinal);
+        System.out.printf("Dex: %02d | ", conFinal);
+        System.out.printf("Foc: %02d |=| ", witFinal);
+        System.out.printf("Per: %02d | ", skillPerFinal);
+        System.out.printf("Res: %02d | ", skillResFinal);
+        System.out.printf("Ref: %02d \n", skillRefFinal);
+        System.out.printf("Int: %02d | ", focFinal);
+        System.out.printf("Wit: %02d |=| ", intFinal);
+        System.out.printf("Ins: %02d | ", skillInsFinal);
+        System.out.printf("Kno: %02d | ", skillKnoFinal);
+        System.out.printf("Cha: %02d \n", skillChaFinal);
     }
 
-    public String creatureName = "none";
+    public abstract void setFinalAttributes();
 
-    // Getters
-    //Attribute Getters
-    public int getStrBase() {
-        return strBase;
+    /**
+     * This should be run everything you finish changing any Attribute or Skill
+     */
+    public void updateCurrentTotalAtrSkl() {
+        curTotalAttributes = strFinal + dexFinal + conFinal + witFinal + focFinal + intFinal;
+        curTotalSkill = skillAthFinal + skillEndFinal + skillSurFinal + skillPerFinal
+                + skillResFinal + skillRefFinal + skillInsFinal + skillKnoFinal + skillChaFinal;
     }
 
-    public int getStrFinal() {
-        return strFinal;
+    public void updateCurrentFinalAtrSkl() {
+
+        updateCurrentTotalAtrSkl();
     }
 
-    public int getStrTemp() {
-        return strTemp;
-    }
-
-    public int getStrCombat() {
-        return strCombat;
-    }
-
-    public int getConBase() {
-        return conBase;
-    }
-
-    public int getConFinal() {
-        return conFinal;
-    }
-
-    public int getConTemp() {
-        return conTemp;
-    }
-
-    public int getConCombat() {
-        return conCombat;
-    }
-
-    public int getDexBase() {
-        return dexBase;
-    }
-
-    public int getDexFinal() {
-        return dexFinal;
-    }
-
-    public int getDexTemp() {
-        return dexTemp;
-    }
-
-    public int getDexCombat() {
-        return dexCombat;
-    }
-
-    public int getFocBase() {
-        return focBase;
-    }
-
-    public int getFocFinal() {
-        return focFinal;
-    }
-
-    public int getFocTemp() {
-        return focTemp;
-    }
-
-    public int getFocCombat() {
-        return focCombat;
-    }
-
-    public int getIntBase() {
-        return intBase;
-    }
-
-    public int getIntFinal() {
-        return intFinal;
-    }
-
-    public int getIntTemp() {
-        return intTemp;
-    }
-
-    public int getIntCombat() {
-        return intCombat;
-    }
-
-    public int getWitBase() {
-        return witBase;
-    }
-
-    public int getWitFinal() {
-        return witFinal;
-    }
-
-    public int getWitTemp() {
-        return witTemp;
-    }
-
-    public int getWitCombat() {
-        return witCombat;
-    }
-
-    public String getCreatureName() {
-        return creatureName;
-    }
-
-    public char getGenderID() {
-        return genderID;
-    }
-
-    public String getGenderName() {
-        return genderName;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public Race getRace() {
-        return race;
-    }
-
-    // Setters
-    //Attribute Setters
-    public void setStrBase(int strBase) {
-        this.strBase = strBase;
-    }
-
-    public void setStrFinal(int strFinal) {
-        this.strFinal = strFinal;
-    }
-
-    public void setStrTemp(int strTemp) {
-        this.strTemp = strTemp;
-    }
-
-    public void setStrCombat(int strCombat) {
-        this.strCombat = strCombat;
-    }
-
-    public void setConBase(int conBase) {
-        this.conBase = conBase;
-    }
-
-    public void setConFinal(int conFinal) {
-        this.conFinal = conFinal;
-    }
-
-    public void setConTemp(int conTemp) {
-        this.conTemp = conTemp;
-    }
-
-    public void setConCombat(int conCombat) {
-        this.conCombat = conCombat;
-    }
-
-    public void setDexBase(int dexBase) {
-        this.dexBase = dexBase;
-    }
-
-    public void setDexFinal(int dexFinal) {
-        this.dexFinal = dexFinal;
-    }
-
-    public void setDexTemp(int dexTemp) {
-        this.dexTemp = dexTemp;
-    }
-
-    public void setDexCombat(int dexCombat) {
-        this.dexCombat = dexCombat;
-    }
-
-    public void setFocBase(int focBase) {
-        this.focBase = focBase;
-    }
-
-    public void setFocFinal(int focFinal) {
-        this.focFinal = focFinal;
-    }
-
-    public void setFocTemp(int focTemp) {
-        this.focTemp = focTemp;
-    }
-
-    public void setFocCombat(int focCombat) {
-        this.focCombat = focCombat;
-    }
-
-    public void setIntBase(int intBase) {
-        this.intBase = intBase;
-    }
-
-    public void setIntFinal(int intFinal) {
-        this.intFinal = intFinal;
-    }
-
-    public void setIntTemp(int intTemp) {
-        this.intTemp = intTemp;
-    }
-
-    public void setIntCombat(int intCombat) {
-        this.intCombat = intCombat;
-    }
-
-    public void setWitBase(int witBase) {
-        this.witBase = witBase;
-    }
-
-    public void setWitFinal(int witFinal) {
-        this.witFinal = witFinal;
-    }
-
-    public void setWitTemp(int witTemp) {
-        this.witTemp = witTemp;
-    }
-
-    public void setWitCombat(int witCombat) {
-        this.witCombat = witCombat;
-    }
-
-    public void setCreatureName(String creatureName) {
-        this.creatureName = creatureName;
-    }
+    //Setters
 
     /**
      * Takes given genderID and sets the genderID and genderName to the correct gender
@@ -335,10 +140,6 @@ public abstract class Creature {
         }
     }
 
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
     /**
      * Sets a creature.race to a specified Race instance.
      * Changes creatures's raceName/SubraceName and raceID/SubraceID to the appropriate values.
@@ -361,7 +162,9 @@ public abstract class Creature {
             case 202:
                 race = new Wood();
                 break;
-            default: throw new IllegalSubRaceID(subRaceID);
+            default:
+                throw new IllegalSubRaceID(subRaceID);
         }
     }
+
 }

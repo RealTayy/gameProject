@@ -10,8 +10,8 @@ public abstract class Human extends Race {
         setRaceID(1);
 
         //Sets Race Attributes
-        setStrRace(genRandomAttributeRange(3));
-        setConRace(genRandomAttributeRange(3));
+        setStrRace(genRandomAttributeRange(5));
+        setConRace(genRandomAttributeRange(0));
         setDexRace(genRandomAttributeRange(3));
         setFocRace(genRandomAttributeRange(3));
         setIntRace(genRandomAttributeRange(3));
