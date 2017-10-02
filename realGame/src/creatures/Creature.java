@@ -28,8 +28,8 @@ public abstract class Creature {
     public int witFinal = 0;
     public int focFinal = 0;
     public int intFinal = 0;
-    public int curTotalAttributes = 0;
-    public int maxTotalAttributes = 6 * 20; // Number of Attributes * Max Attribute Final
+    public int curTotalAttribute = 0;
+    public int maxTotalAttribute = 6 * 20; // Number of Attributes * Max Attribute Final
 
     public int skillAthFinal = 0;
     public int skillEndFinal = 0;
@@ -79,17 +79,12 @@ public abstract class Creature {
     public abstract void setFinalAttributes();
 
     /**
-     * This should be run everything you finish changing any Attribute or Skill
+     * Sets current total Attribute and Skill to correct values
      */
     public void updateCurrentTotalAtrSkl() {
-        curTotalAttributes = strFinal + dexFinal + conFinal + witFinal + focFinal + intFinal;
+        curTotalAttribute = strFinal + dexFinal + conFinal + witFinal + focFinal + intFinal;
         curTotalSkill = skillAthFinal + skillEndFinal + skillSurFinal + skillPerFinal
                 + skillResFinal + skillRefFinal + skillInsFinal + skillKnoFinal + skillChaFinal;
-    }
-
-    public void updateCurrentFinalAtrSkl() {
-
-        updateCurrentTotalAtrSkl();
     }
 
     //Setters

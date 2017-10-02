@@ -12,8 +12,8 @@ public class Dominion extends Human {
         setSubraceID(101);
 
         //Sets Subrace Attributes
-        setStrSubrace(genRandomAttributeRange(5));
-        setConSubrace(genRandomAttributeRange(0));
+        setStrSubrace(genRandomAttributeRange(3));
+        setConSubrace(genRandomAttributeRange(3));
         setDexSubrace(genRandomAttributeRange(3));
         setFocSubrace(genRandomAttributeRange(3));
         setIntSubrace(genRandomAttributeRange(3));

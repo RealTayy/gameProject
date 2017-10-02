@@ -3,16 +3,18 @@ import creatures.entity.Entity;
 public class PlayerInterface {
 
     public static void main(String[] args) {
-        Entity testEntity = new Entity(1);
+        Entity testEntity = new Entity(1, 500);
         testEntity.printInfo();
-
     }
 
 /*
 
-Make sure Current Rating is calculating correctly in Entity.PrintInfo & Entity.updateCurrentRank
+make sure all uses updateCurrentTotalRankAtrSkl(); is logical and in correct spots...
 
-Make pontential level actually matter?
+improve add random skill/attribute rank
+
+fix how current skill rank is calculated
+
 
 ==Attributes==
 str Str 123456

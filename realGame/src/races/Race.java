@@ -21,7 +21,7 @@ public abstract class Race {
      * Race ID master list:
      * 1    Human
      * 2    Elf
-     * <p>
+     *
      * Subrace ID masterList
      * 101  Dominion    (Human)
      * 102  Untargot    (Human)

@@ -1,6 +1,8 @@
 package exceptions;
 
 
+import java.io.IOException;
+
 public class IllegalGenderID extends RuntimeException {
 
     public IllegalGenderID() {
