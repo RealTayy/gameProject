@@ -2,6 +2,7 @@ package creatures.entity;
 
 import creatures.Creature;
 import exceptions.IllegalAtrOrSkill;
+import exceptions.OutOfRange;
 
 import java.util.Random;
 
@@ -56,7 +57,7 @@ public class Entity extends Creature {
     public Entity(int potentialLevel, int percentDeveloped) {
         super();
         this.potentialLevel = potentialLevel;
-        this.percentDeveloped = percentDeveloped;
+        setPercentDeveloped(percentDeveloped);
         initializeNewEntity();
     }
 
@@ -73,7 +74,7 @@ public class Entity extends Creature {
         System.out.printf("Foc: %05.2f/%02d \n", witRank, witMaxRank);
         System.out.printf("Int: %05.2f/%02d | ", focRank, focMaxRank);
         System.out.printf("Wit: %05.2f/%02d \n", intRank, intMaxRank);
-        System.out.printf("A.Total/Max: %06.2f/%02d \n", curTotalAttributeRank, maxTotalAttributeRank);
+        System.out.printf("A.Total/Max: %5.2f/%02d \n", curTotalAttributeRank, maxTotalAttributeRank);
         System.out.printf("Current Rating: %4.2f/%4.2f \n", curAttributeRating, maxAttributeRating);
         System.out.println("-------Skills-------");
         System.out.printf("Ath: %05.2f/%02d | ", skillAthRank, skillAthMaxRank);
@@ -150,8 +151,8 @@ public class Entity extends Creature {
         int skillPoints = (maxTotalSkillRank * percentDeveloped) / 100;
         int attributePoints = (maxTotalAttributeRank * percentDeveloped) / 100;
 
-        addRandomSkillRank(skillPoints);
-        addRandomAttributeRank(attributePoints);
+        addWeightedSkillRank(skillPoints);
+        addWeightedAttributeRank(attributePoints);
 
         updateCurrentTotalRankAtrSkl();
     }
@@ -176,13 +177,48 @@ public class Entity extends Creature {
     }
 
     /**
-     *
-     * @param numberOfRanks
+     * Checks if a entity's current Attribute or Skill rank is equal to its respective Max rank
+     * @param attributeOrSkill 3 Letter abbreviation of a Strength or Skill or the Full Name
+     *                         Also accepts:    Attribute(Atr) -Checks all Attributes
+     *                                          Skill(Skl)     -Checks all Skills
+     *                                          All            -Checks all Attributes and Skills
+     * @returns Returns true if current rank == max rank.
      */
-    public void addRandomAttributeRank(int numberOfRanks) {
+    public boolean isRankMaxed(String attributeOrSkill) {
+        attributeOrSkill = attributeOrSkill.substring(0,3).toLowerCase();
+        switch (attributeOrSkill) {
+            case "str" : return (strRank == strMaxRank);
+            case "dex" : return (dexRank == strMaxRank);
+            case "con" : return (conRank == strMaxRank);
+            case "wit" : return (witRank == strMaxRank);
+            case "foc" : return (focRank == strMaxRank);
+            case "int" : return (intRank == strMaxRank);
+            case "ath" : return (skillAthRank == skillAthMaxRank);
+            case "end" : return (skillEndRank == skillEndMaxRank);
+            case "sur" : return (skillSurRank == skillSurMaxRank);
+            case "per" : return (skillPerRank == skillPerMaxRank);
+            case "res" : return (skillResRank == skillResMaxRank);
+            case "ref" : return (skillRefRank == skillRefMaxRank);
+            case "ins" : return (skillInsRank == skillInsMaxRank);
+            case "kno" : return (skillKnoRank == skillKnoMaxRank);
+            case "cha" : return (skillChaRank == skillChaMaxRank);
+            case "ski" : return (curTotalSkillRank == maxTotalSkillRank);
+            case "skl" : return (curTotalSkillRank == maxTotalSkillRank);
+            case "atr" : return (curTotalAttributeRank== maxTotalAttributeRank);
+            case "att" : return (curTotalAttributeRank== maxTotalAttributeRank);
+            case "all" : return (isRankMaxed("skl") && isRankMaxed("atr"));
+            default : throw new IllegalAtrOrSkill(attributeOrSkill);
+        }
+    }
+
+    /**
+     *
+     * @param ranksToAdd
+     */
+    public void addRandomAttributeRank(int ranksToAdd) {
         Random rand = new Random();
-        System.out.println("Number of ranks to add: " + numberOfRanks);
-        while (numberOfRanks-- > 0 && !isRankMaxed("Attribute")) {
+        System.out.println("Number of ranks to add: " + ranksToAdd);
+        while (ranksToAdd-- > 0 && !isRankMaxed("Attribute")) {
             switch (rand.nextInt(6)) {
                 case 0:
                     if (strRank == strMaxRank) addRandomAttributeRank(1);
@@ -212,18 +248,19 @@ public class Entity extends Creature {
         }
         updateCurrentTotalRankAtrSkl();
     }
-    //NEEDS TO BE FIXED ABOVE ^
+
+
 
     /**
      *
-     * @param numberOfRanks
+     * @param ranksToAdd
      */
-    public void addRandomSkillRank(int numberOfRanks) {
+    public void addRandomSkillRank(int ranksToAdd) {
         Random rand = new Random();
-        while (numberOfRanks-- > 0 && !isRankMaxed("Skill")) {
+        while (ranksToAdd-- > 0 && !isRankMaxed("Skill")) {
             switch (rand.nextInt(9)) {
                 case 0:
-                    if (skillAthRank == skillAthMaxRank) addRandomSkillRank( b1);
+                    if (skillAthRank == skillAthMaxRank) addRandomSkillRank(1);
                     else setSkillAthRank(skillAthRank + 1);
                     break;
                 case 1:
@@ -265,35 +302,58 @@ public class Entity extends Creature {
 
     /**
      *
-     * @param attributeOrSkill
+     * @param ranksToAdd
      */
-    public boolean isRankMaxed(String attributeOrSkill) {
-        attributeOrSkill = attributeOrSkill.substring(0,3).toLowerCase();
-        switch (attributeOrSkill) {
-            case "str" : return (strRank == strMaxRank);
-            case "dex" : return (dexRank == strMaxRank);
-            case "con" : return (conRank == strMaxRank);
-            case "wit" : return (witRank == strMaxRank);
-            case "foc" : return (focRank == strMaxRank);
-            case "int" : return (intRank == strMaxRank);
-            case "ath" : return (skillAthRank == skillAthMaxRank);
-            case "end" : return (skillEndRank == skillEndMaxRank);
-            case "sur" : return (skillSurRank == skillSurMaxRank);
-            case "per" : return (skillPerRank == skillPerMaxRank);
-            case "res" : return (skillResRank == skillResMaxRank);
-            case "ref" : return (skillRefRank == skillRefMaxRank);
-            case "ins" : return (skillInsRank == skillInsMaxRank);
-            case "kno" : return (skillKnoRank == skillKnoMaxRank);
-            case "cha" : return (skillChaRank == skillChaMaxRank);
-            case "ski" : return (curTotalSkillRank == maxTotalSkillRank);
-            case "skl" : return (curTotalSkillRank == maxTotalSkillRank);
-            case "atr" : return (curTotalAttributeRank== maxTotalAttributeRank);
-            case "att" : return (curTotalAttributeRank== maxTotalAttributeRank);
-            case "all" : return (isRankMaxed("skl") && isRankMaxed("atr"));
-            default : throw new IllegalAtrOrSkill(attributeOrSkill);
+    public void addWeightedAttributeRank(int ranksToAdd) {
+        int strBound = strMaxRank;
+        int dexBound = dexMaxRank + strBound;
+        int conBound = conMaxRank + dexBound;
+        int witBound = witMaxRank + conBound;
+        int focBound = focMaxRank + witBound;
+        int intBound = intMaxRank + focBound;
+        int totBound = intBound;
+        while (ranksToAdd-- > 0) {
+            Random rand = new Random();
+            int n = rand.nextInt(totBound) + 1;
+            if ( 0 < n && n <= strBound) if (isRankMaxed("str")) addWeightedAttributeRank(1); else setStrRank(strRank + 1);
+            else if ( strBound < n && n <= dexBound) if (isRankMaxed("dex")) addWeightedAttributeRank(1); else setDexRank(dexRank + 1);
+            else if ( dexBound < n && n <= conBound) if (isRankMaxed("con")) addWeightedAttributeRank(1); else setConRank(conRank + 1);
+            else if ( conBound < n && n <= witBound) if (isRankMaxed("wit")) addWeightedAttributeRank(1); else setWitRank(witRank + 1);
+            else if ( witBound < n && n <= focBound) if (isRankMaxed("foc")) addWeightedAttributeRank(1); else setFocRank(focRank + 1);
+            else if ( focBound < n && n <= intBound) if (isRankMaxed("int")) addWeightedAttributeRank(1); else setIntRank(intRank + 1);
+            else throw new OutOfRange(n, 1, totBound);
         }
+    }
 
-
+    /**
+     *
+     * @param ranksToAdd
+     */
+    public void addWeightedSkillRank(int ranksToAdd) {
+        int athBound = skillAthMaxRank;
+        int endBound = skillEndMaxRank + athBound;
+        int surBound = skillSurMaxRank + endBound;
+        int perBound = skillPerMaxRank + surBound;
+        int resBound = skillResMaxRank + perBound;
+        int refBound = skillRefMaxRank + resBound;
+        int insBound = skillInsMaxRank + refBound;
+        int knoBound = skillKnoMaxRank + insBound;
+        int chaBound = skillChaMaxRank + knoBound;
+        int totBound = chaBound;
+        while (ranksToAdd-- > 0) {
+            Random rand = new Random();
+            int n = rand.nextInt(totBound) + 1;
+            if ( 0 < n && n <= athBound) if (isRankMaxed("ath")) addWeightedSkillRank(1); else setSkillAthRank(skillAthRank + 1);
+            else if ( athBound < n && n <= endBound) if (isRankMaxed("end")) addWeightedSkillRank(1); else setSkillEndRank(skillEndRank + 1);
+            else if ( endBound < n && n <= surBound) if (isRankMaxed("sur")) addWeightedSkillRank(1); else setSkillSurRank(skillSurRank + 1);
+            else if ( surBound < n && n <= perBound) if (isRankMaxed("per")) addWeightedSkillRank(1); else setSkillPerRank(skillPerRank + 1);
+            else if ( perBound < n && n <= resBound) if (isRankMaxed("res")) addWeightedSkillRank(1); else setSkillResRank(skillResRank + 1);
+            else if ( resBound < n && n <= refBound) if (isRankMaxed("ref")) addWeightedSkillRank(1); else setSkillRefRank(skillRefRank + 1);
+            else if ( refBound < n && n <= insBound) if (isRankMaxed("ins")) addWeightedSkillRank(1); else setSkillInsRank(skillInsRank + 1);
+            else if ( insBound < n && n <= knoBound) if (isRankMaxed("kno")) addWeightedSkillRank(1); else setSkillKnoRank(skillKnoRank + 1);
+            else if ( knoBound < n && n <= chaBound) if (isRankMaxed("cha")) addWeightedSkillRank(1); else setSkillChaRank(skillChaRank + 1);
+            else throw new OutOfRange(n, 1, totBound);
+        }
     }
 
 
@@ -430,5 +490,10 @@ public class Entity extends Creature {
 
     public void setSkillChaRank(double d) {
         this.skillChaRank = (d > skillChaMaxRank) ? skillChaMaxRank : d;
+    }
+
+    public void setPercentDeveloped(int percentDeveloped) {
+        if (percentDeveloped < 0 | percentDeveloped > 100) throw new OutOfRange(percentDeveloped, 0, 100);
+        else this.percentDeveloped = percentDeveloped;
     }
 }

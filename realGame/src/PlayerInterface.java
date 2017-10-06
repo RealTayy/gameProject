@@ -3,8 +3,9 @@ import creatures.entity.Entity;
 public class PlayerInterface {
 
     public static void main(String[] args) {
-        Entity testEntity = new Entity(1, 500);
+        Entity testEntity = new Entity(2, 10);
         testEntity.printInfo();
+
     }
 
 /*
