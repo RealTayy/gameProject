@@ -12,22 +12,22 @@ public class Wood extends Elf {
         setSubraceID(202);
 
         //Sets Subrace Attributes
-        setStrSubrace(5);
-        setConSubrace(5);
-        setDexSubrace(5);
-        setFocSubrace(5);
-        setIntSubrace(5);
-        setWitSubrace(5);
+        setStrSubrace(genRandomAttributeRange(0));
+        setConSubrace(genRandomAttributeRange(0));
+        setDexSubrace(genRandomAttributeRange(0));
+        setFocSubrace(genRandomAttributeRange(0));
+        setIntSubrace(genRandomAttributeRange(0));
+        setWitSubrace(genRandomAttributeRange(0));
 
         //Sets Subrace Skills
-        setSkillAthSubrace(5);
-        setSkillEndSubrace(5);
-        setSkillSurSubrace(5);
-        setSkillPerSubrace(5);
-        setSkillResSubrace(5);
-        setSkillRefSubrace(5);
-        setSkillInsSubrace(5);
-        setSkillKnoSubrace(5);
-        setSkillChaSubrace(5);
+        setSkillAthSubrace(genRandomSkillRange(0));
+        setSkillEndSubrace(genRandomSkillRange(0));
+        setSkillSurSubrace(genRandomSkillRange(0));
+        setSkillPerSubrace(genRandomSkillRange(0));
+        setSkillResSubrace(genRandomSkillRange(0));
+        setSkillRefSubrace(genRandomSkillRange(0));
+        setSkillInsSubrace(genRandomSkillRange(0));
+        setSkillKnoSubrace(genRandomSkillRange(0));
+        setSkillChaSubrace(genRandomSkillRange(0));
     }
 }

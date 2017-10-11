@@ -7,6 +7,7 @@ import races.elf.subclass.Chosen;
 import races.elf.subclass.Wood;
 import races.human.subclass.Dominion;
 import races.human.subclass.Untargot;
+import stats.Stats;
 
 /**
  * The {@code Creature} is a main Superclass of all types of creatures in the game.
@@ -19,32 +20,13 @@ public abstract class Creature {
     private char genderID = 'M';
     private String genderName = "Male";
 
+    public Stats stats = new Stats();
+
     //A Creature race is determined by setting variable {race} to a subRace class. See method {setRace} for more details
-    public Race race = new Dominion();
+    public Race race;
 
-    public int strFinal = 0;
-    public int dexFinal = 0;
-    public int conFinal = 0;
-    public int witFinal = 0;
-    public int focFinal = 0;
-    public int intFinal = 0;
-    public int curTotalAttribute = 0;
-    public int maxTotalAttribute = 6 * 20; // Number of Attributes * Max Attribute Final
-
-    public int skillAthFinal = 0;
-    public int skillEndFinal = 0;
-    public int skillSurFinal = 0;
-    public int skillPerFinal = 0;
-    public int skillResFinal = 0;
-    public int skillRefFinal = 0;
-    public int skillInsFinal = 0;
-    public int skillKnoFinal = 0;
-    public int skillChaFinal = 0;
-    public int curTotalSkill = 0;
-    public int maxTotalSkill = 9 * 50; // Number of Skills * Max Skill Final
-
-    public Creature() {
-
+    public Creature(Race raceOrSubrace) {
+        race = raceOrSubrace;
     }
 
     public void printInfo() {
@@ -59,33 +41,24 @@ public abstract class Creature {
         System.out.println("Race:     " + race.getRaceName() + " (ID:" + race.getRaceID() + ")");
         System.out.println("SubRace:  " + race.getSubraceName() + " (ID:" + race.getSubraceID() + ")");
         System.out.println("-----Attributes---|=|-----------Skills-----------");
-        System.out.printf("Str: %02d | ", strFinal);
-        System.out.printf("Con: %02d |=| ", dexFinal);
-        System.out.printf("Ath: %02d | ", skillAthFinal);
-        System.out.printf("End: %02d | ", skillEndFinal);
-        System.out.printf("Sur: %02d \n", skillSurFinal);
-        System.out.printf("Dex: %02d | ", conFinal);
-        System.out.printf("Foc: %02d |=| ", witFinal);
-        System.out.printf("Per: %02d | ", skillPerFinal);
-        System.out.printf("Res: %02d | ", skillResFinal);
-        System.out.printf("Ref: %02d \n", skillRefFinal);
-        System.out.printf("Int: %02d | ", focFinal);
-        System.out.printf("Wit: %02d |=| ", intFinal);
-        System.out.printf("Ins: %02d | ", skillInsFinal);
-        System.out.printf("Kno: %02d | ", skillKnoFinal);
-        System.out.printf("Cha: %02d \n", skillChaFinal);
+        System.out.printf("Str: %02d | ", stats.getStrFinal());
+        System.out.printf("Con: %02d |=| ", stats.getDexFinal());
+        System.out.printf("Ath: %02d | ", stats.getSkillAthFinal());
+        System.out.printf("End: %02d | ", stats.getSkillEndFinal());
+        System.out.printf("Sur: %02d \n", stats.getSkillSurFinal());
+        System.out.printf("Dex: %02d | ", stats.getConFinal());
+        System.out.printf("Foc: %02d |=| ", stats.getWitFinal());
+        System.out.printf("Per: %02d | ", stats.getSkillPerFinal());
+        System.out.printf("Res: %02d | ", stats.getSkillResFinal());
+        System.out.printf("Ref: %02d \n", stats.getSkillRefFinal());
+        System.out.printf("Int: %02d | ", stats.getFocFinal());
+        System.out.printf("Wit: %02d |=| ", stats.getIntFinal());
+        System.out.printf("Ins: %02d | ", stats.getSkillInsFinal());
+        System.out.printf("Kno: %02d | ", stats.getSkillKnoFinal());
+        System.out.printf("Cha: %02d \n", stats.getSkillChaFinal());
     }
 
-    public abstract void setFinalAttributes();
 
-    /**
-     * Sets current total Attribute and Skill to correct values
-     */
-    public void updateCurrentTotalAtrSkl() {
-        curTotalAttribute = strFinal + dexFinal + conFinal + witFinal + focFinal + intFinal;
-        curTotalSkill = skillAthFinal + skillEndFinal + skillSurFinal + skillPerFinal
-                + skillResFinal + skillRefFinal + skillInsFinal + skillKnoFinal + skillChaFinal;
-    }
 
     //Setters
 

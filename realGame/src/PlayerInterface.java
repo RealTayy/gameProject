@@ -1,20 +1,24 @@
 import creatures.entity.Entity;
+import races.elf.subclass.*;
+import races.human.subclass.*;
+
+import java.util.Arrays;
 
 public class PlayerInterface {
 
     public static void main(String[] args) {
-        Entity testEntity = new Entity(2, 10);
+        Entity testEntity = new Entity(new Dominion(), 2, 80);
+        testEntity.setGenderID('F');
         testEntity.printInfo();
+
+        Entity testEntity2 = new Entity(new Wood(), 2, 80);
+        testEntity2.printInfo();
+
 
     }
 
 /*
-
-make sure all uses updateCurrentTotalRankAtrSkl(); is logical and in correct spots...
-
-improve add random skill/attribute rank
-
-fix how current skill rank is calculated
+setFinalAttributesAndSkills and Skills in Entity from Creatures abstract method
 
 
 ==Attributes==
