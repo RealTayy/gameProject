@@ -1,12 +1,9 @@
 package creatures;
 
+import creatures.monster.Monster;
 import exceptions.IllegalGenderID;
-import exceptions.IllegalSubRaceID;
 import races.Race;
-import races.elf.subclass.Chosen;
-import races.elf.subclass.Wood;
 import races.human.subclass.Dominion;
-import races.human.subclass.Untargot;
 import stats.Stats;
 
 /**
@@ -15,44 +12,47 @@ import stats.Stats;
  */
 
 public abstract class Creature {
+
     public String creatureName = "none";
 
     private char genderID = 'M';
     private String genderName = "Male";
 
-    public Stats stats = new Stats();
+    public Stats stats;
 
-    //A Creature race is determined by setting variable {race} to a subRace class. See method {setRace} for more details
-    public Race race;
+    public Race race = new Dominion();
 
-    public Creature(Race raceOrSubrace) {
-        race = raceOrSubrace;
+    // Constructors
+
+    public Creature(int subraceID) {
+        setRace(subraceID);
     }
+
+    // Methods
 
     public void printInfo() {
         System.out.println("Printing Information for " + creatureName);
         System.out.println("------Details-------");
         System.out.println("Name:     " + creatureName);
-        System.out.printf("Ranking:  %02d\n", 99999999);
-        System.out.printf("Att Rank: %02d\n", 99999999);
-        System.out.printf("Skl Rank: %02d\n", 99999999);
+        System.out.printf("Att Rank: %.2f\n", stats.getCurAttributeRating());
+        System.out.printf("Skl Rank: %.2f\n", stats.getCurSkillRating());
         System.out.println("Gender:   " + genderName + " (ID:" + genderID + ")");
         System.out.println("----Race/SubRace----");
         System.out.println("Race:     " + race.getRaceName() + " (ID:" + race.getRaceID() + ")");
         System.out.println("SubRace:  " + race.getSubraceName() + " (ID:" + race.getSubraceID() + ")");
         System.out.println("-----Attributes---|=|-----------Skills-----------");
         System.out.printf("Str: %02d | ", stats.getStrFinal());
-        System.out.printf("Con: %02d |=| ", stats.getDexFinal());
+        System.out.printf("Dex: %02d |=| ", stats.getDexFinal());
         System.out.printf("Ath: %02d | ", stats.getSkillAthFinal());
         System.out.printf("End: %02d | ", stats.getSkillEndFinal());
         System.out.printf("Sur: %02d \n", stats.getSkillSurFinal());
-        System.out.printf("Dex: %02d | ", stats.getConFinal());
-        System.out.printf("Foc: %02d |=| ", stats.getWitFinal());
+        System.out.printf("Con: %02d | ", stats.getConFinal());
+        System.out.printf("Wit: %02d |=| ", stats.getWitFinal());
         System.out.printf("Per: %02d | ", stats.getSkillPerFinal());
         System.out.printf("Res: %02d | ", stats.getSkillResFinal());
         System.out.printf("Ref: %02d \n", stats.getSkillRefFinal());
-        System.out.printf("Int: %02d | ", stats.getFocFinal());
-        System.out.printf("Wit: %02d |=| ", stats.getIntFinal());
+        System.out.printf("Foc: %02d | ", stats.getFocFinal());
+        System.out.printf("Int: %02d |=| ", stats.getIntFinal());
         System.out.printf("Ins: %02d | ", stats.getSkillInsFinal());
         System.out.printf("Kno: %02d | ", stats.getSkillKnoFinal());
         System.out.printf("Cha: %02d \n", stats.getSkillChaFinal());
@@ -69,7 +69,7 @@ public abstract class Creature {
      * > (M) Male
      * > (F) Female
      *
-     * @param genderID
+     * @param genderID either (M)ale or (F)emale
      * @throws IllegalGenderID if not valid genderIF
      */
     public void setGenderID(char genderID) {
@@ -92,7 +92,7 @@ public abstract class Creature {
      * > Male (M)
      * > Female (F)
      *
-     * @param genderName
+     * @param genderName either (M)ale or (F)emale
      * @throws IllegalGenderID if not valid genderIF
      */
     public void setGenderName(String genderName) {
@@ -113,26 +113,11 @@ public abstract class Creature {
      * Changes creatures's raceName/SubraceName and raceID/SubraceID to the appropriate values.
      * Changes atrRace/atrSubrace to the appropriate values
      *
-     * @param subRaceID changes the above according to the subRaceID given. subRaceID values can be
-     *                  found inside each subRace Class. A master list can be found in {@Race}
+     * @param subraceID changes the above according to the subRaceID given. subRaceID values can be
+     *                  found inside each subRace Class. A master list can be found in {@code Race}
      */
-    public void setRace(int subRaceID) {
-        switch (subRaceID) {
-            case 101:
-                race = new Dominion();
-                break;
-            case 102:
-                race = new Untargot();
-                break;
-            case 201:
-                race = new Chosen();
-                break;
-            case 202:
-                race = new Wood();
-                break;
-            default:
-                throw new IllegalSubRaceID(subRaceID);
-        }
+    public void setRace(int subraceID) {
+        this.race = race.genRace(subraceID);
     }
 
 }

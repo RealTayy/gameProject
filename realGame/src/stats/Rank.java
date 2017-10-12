@@ -3,7 +3,6 @@ package stats;
 import exceptions.IllegalAtrOrSkill;
 import exceptions.OutOfRange;
 import races.Race;
-import races.human.subclass.Dominion;
 
 import java.util.Random;
 
@@ -58,10 +57,10 @@ public class Rank extends Stats {
     private int skillChaMaxRank = 0;
     private int maxTotalSkillRank = 0;
 
-    private double curAttributeRating = 0.0;
-    private double maxAttributeRating = 0.0;
-    private double curSkillRating = 0.0;
-    private double maxSkillRating = 0.0;
+    private double curAttributeRankRating = 0.0;
+    private double maxAttributeRankRating = 0.0;
+    private double curSkillRankRating = 0.0;
+    private double maxSkillRankRating = 0.0;
 
     private int potentialLevel = 0;
     private int percentDeveloped = 0;
@@ -103,7 +102,7 @@ public class Rank extends Stats {
     /**
      * Generates and sets all maxes for Attributes and Skills rank and ratings
      * -atrMaxRank             -skillMaxRank
-     * -maxTotalAttributeRank  -maxAttributeRating
+     * -maxTotalAttributeRank  -maxAttributeRankRating
      * -maxTotalSkillRank      -maxSKillRating
      *
      * Max Rank for Attribute is calculated by this equation:
@@ -113,8 +112,8 @@ public class Rank extends Stats {
      * 6(base) + (potentialLevel *3) + skillRace + skillSubrace + ((Primary atr * 7 + Secondary atr * 3) / 10)
      */
     public void generateMaxRankForAtrSkl() {
-        int atrBase = 5 + (potentialLevel * 2);
-        int skillBase = 6 + (potentialLevel * 3);
+        int atrBase = 3 + (potentialLevel * 2);
+        int skillBase = 2 + (potentialLevel * 3);
 
         setStrMaxRank(atrBase + race.getStrRace() + race.getStrSubrace());
         setDexMaxRank(atrBase + race.getDexRace() + race.getDexSubrace());
@@ -136,8 +135,8 @@ public class Rank extends Stats {
         maxTotalSkillRank = skillAthMaxRank + skillEndMaxRank + skillSurMaxRank + skillPerMaxRank
                 + skillResMaxRank + skillRefMaxRank + skillInsMaxRank + skillKnoMaxRank + skillChaMaxRank;
 
-        maxAttributeRating = ((double) maxTotalAttributeRank / (double) getMaxTotalAttribute()) * 5;
-        maxSkillRating = ((double) maxTotalSkillRank / (double) getMaxTotalSkill()) * 5;
+        maxAttributeRankRating = ((double) maxTotalAttributeRank / (double) getMaxTotalAttribute()) * 5;
+        maxSkillRankRating = ((double) maxTotalSkillRank / (double) getMaxTotalSkill()) * 5;
     }
 
     /**
@@ -148,6 +147,26 @@ public class Rank extends Stats {
     public void generateInitialRankForAtrSkl(int percentDeveloped) {
         int skillPoints = (maxTotalSkillRank * percentDeveloped) / 100;
         int attributePoints = (maxTotalAttributeRank * percentDeveloped) / 100;
+
+        // This guarantees that there will be at least one point in each Attribute and Skill
+        attributePoints -= 6;
+        skillPoints -= 9;
+        setStrRank(1.0);
+        setDexRank(1.0);
+        setConRank(1.0);
+        setWitRank(1.0);
+        setFocRank(1.0);
+        setIntRank(1.0);
+        setSkillAthRank(1.0);
+        setSkillEndRank(1.0);
+        setSkillSurRank(1.0);
+        setSkillPerRank(1.0);
+        setSkillResRank(1.0);
+        setSkillRefRank(1.0);
+        setSkillInsRank(1.0);
+        setSkillKnoRank(1.0);
+        setSkillChaRank(1.0);
+
 
         addWeightedSkillRank(skillPoints);
         addWeightedAttributeRank(attributePoints);
@@ -168,8 +187,8 @@ public class Rank extends Stats {
      *
      */
     public void updateCurrentRatingAtrSkl() {
-        curAttributeRating = (curTotalAttributeRank / (double) getMaxTotalAttribute()) * 5;
-        curSkillRating = (curTotalSkillRank / (double) getMaxTotalSkill()) * 5;
+        curAttributeRankRating = (curTotalAttributeRank / (double) getMaxTotalAttribute()) * 5;
+        curSkillRankRating = (curTotalSkillRank / (double) getMaxTotalSkill()) * 5;
     }
 
     /**
@@ -535,7 +554,7 @@ public class Rank extends Stats {
     }
 
     public void setPotentialLevel(int potentialLevel) {
-        if (potentialLevel < 0 | potentialLevel > 4) throw new OutOfRange(potentialLevel, 0, 4);
+        if (potentialLevel < 0 | potentialLevel > 5) throw new OutOfRange(potentialLevel, 0, 5);
         else this.potentialLevel = potentialLevel;
 
     }
@@ -686,20 +705,20 @@ public class Rank extends Stats {
         return maxTotalSkillRank;
     }
 
-    public double getCurAttributeRating() {
-        return curAttributeRating;
+    public double getCurAttributeRankRating() {
+        return curAttributeRankRating;
     }
 
-    public double getMaxAttributeRating() {
-        return maxAttributeRating;
+    public double getMaxAttributeRankRating() {
+        return maxAttributeRankRating;
     }
 
-    public double getCurSkillRating() {
-        return curSkillRating;
+    public double getCurSkillRankRating() {
+        return curSkillRankRating;
     }
 
-    public double getMaxSkillRating() {
-        return maxSkillRating;
+    public double getMaxSkillRankRating() {
+        return maxSkillRankRating;
     }
 
     public int getPotentialLevel() {

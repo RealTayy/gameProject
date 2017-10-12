@@ -1,15 +1,15 @@
-package races.human.subclass;
+package races.goblin.subclass;
 
-import races.human.Human;
+import races.goblin.Goblin;
 
-public class Dominion extends Human {
+public class DeepGoblin extends Goblin{
 
-    public Dominion() {
+    public DeepGoblin() {
         super();
 
         //Sets Subrace Name and ID
-        setSubraceName("Dominion");
-        setSubraceID(101);
+        setSubraceName("Deep Goblin");
+        setSubraceID(401);
 
         //Sets Subrace Attributes
         setStrSubrace(genRandomAttributeRange(5));
@@ -29,5 +29,6 @@ public class Dominion extends Human {
         setSkillInsSubrace(genRandomSkillRange(5));
         setSkillKnoSubrace(genRandomSkillRange(5));
         setSkillChaSubrace(genRandomSkillRange(5));
+
     }
 }

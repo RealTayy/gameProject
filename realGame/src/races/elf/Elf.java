@@ -10,12 +10,12 @@ public abstract class Elf extends Race {
         setRaceID(2);
 
         //Sets Race Attributes
-        setStrRace(genRandomAttributeRange(0));
-        setConRace(genRandomAttributeRange(0));
-        setDexRace(genRandomAttributeRange(0));
-        setFocRace(genRandomAttributeRange(0));
-        setIntRace(genRandomAttributeRange(0));
-        setWitRace(genRandomAttributeRange(0));
+        setStrRace(genRandomAttributeRange(4));
+        setDexRace(genRandomAttributeRange(4));
+        setConRace(genRandomAttributeRange(2));
+        setWitRace(genRandomAttributeRange(2));
+        setFocRace(genRandomAttributeRange(1));
+        setIntRace(genRandomAttributeRange(2));
 
         //Sets Race Skills
         setSkillAthRace(genRandomSkillRange(0));

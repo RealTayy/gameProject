@@ -1,13 +1,26 @@
 package creatures.monster;
 
 import creatures.Creature;
+import races.Race;
+import stats.Stats;
 
-public abstract class Monster { //extends Creature {
+public class Monster extends Creature {
 
-    public void loadMonsterID(int loadedMonsterID) {
+    // Constructors
 
-        //When creature updateFinalAtr here make it something like
-        //strFinal = getStrBase() + race.getStrRace() + race.getStrSubrace(); + Monster.getStrMonster();
+    public Monster(int subraceID) {
+        super(subraceID);
+    }
+
+    // Methods
+
+    @Override
+    public void printInfo() {
+        super.printInfo();
+        System.out.println("----Monster Info----");
+        System.out.println("Name:     " + creatureName);
 
     }
+
+
 }

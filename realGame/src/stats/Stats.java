@@ -102,6 +102,14 @@ public class Stats {
         return maxTotalSkill;
     }
 
+    public double getCurAttributeRating() {
+        return 5 * ((double) getCurTotalAttribute() / (double) maxTotalAttribute);
+    }
+
+    public double getCurSkillRating() {
+        return 5 * ((double) getCurTotalSkill() / (double) maxTotalSkill);
+    }
+
 
 
 
@@ -109,63 +117,63 @@ public class Stats {
 
     // Setters
 
-    public void setStrFinal(int strFinal) {
-        this.strFinal = strFinal;
+    public void setStrFinal(int n) {
+        this.strFinal = (n < 1) ? 1 : n;
     }
 
-    public void setDexFinal(int dexFinal) {
-        this.dexFinal = dexFinal;
+    public void setDexFinal(int n) {
+        this.dexFinal = (n < 1) ? 1 : n;
     }
 
-    public void setConFinal(int conFinal) {
-        this.conFinal = conFinal;
+    public void setConFinal(int n) {
+        this.conFinal = (n < 1) ? 1 : n;
     }
 
-    public void setWitFinal(int witFinal) {
-        this.witFinal = witFinal;
+    public void setWitFinal(int n) {
+        this.witFinal = (n < 1) ? 1 : n;
     }
 
-    public void setFocFinal(int focFinal) {
-        this.focFinal = focFinal;
+    public void setFocFinal(int n) {
+        this.focFinal = (n < 1) ? 1 : n;
     }
 
-    public void setIntFinal(int intFinal) {
-        this.intFinal = intFinal;
+    public void setIntFinal(int n) {
+        this.intFinal = (n < 1) ? 1 : n;
     }
 
-    public void setSkillAthFinal(int skillAthFinal) {
-        this.skillAthFinal = skillAthFinal;
+    public void setSkillAthFinal(int n) {
+        this.skillAthFinal = (n < 1) ? 1 : n;
     }
 
-    public void setSkillEndFinal(int skillEndFinal) {
-        this.skillEndFinal = skillEndFinal;
+    public void setSkillEndFinal(int n) {
+        this.skillEndFinal = (n < 1) ? 1 : n;
     }
 
-    public void setSkillSurFinal(int skillSurFinal) {
-        this.skillSurFinal = skillSurFinal;
+    public void setSkillSurFinal(int n) {
+        this.skillSurFinal = (n < 1) ? 1 : n;
     }
 
-    public void setSkillPerFinal(int skillPerFinal) {
-        this.skillPerFinal = skillPerFinal;
+    public void setSkillPerFinal(int n) {
+        this.skillPerFinal = (n < 1) ? 1 : n;
     }
 
-    public void setSkillResFinal(int skillResFinal) {
-        this.skillResFinal = skillResFinal;
+    public void setSkillResFinal(int n) {
+        this.skillResFinal = (n < 1) ? 1 : n;
     }
 
-    public void setSkillRefFinal(int skillRefFinal) {
-        this.skillRefFinal = skillRefFinal;
+    public void setSkillRefFinal(int n) {
+        this.skillRefFinal = (n < 1) ? 1 : n;
     }
 
-    public void setSkillInsFinal(int skillInsFinal) {
-        this.skillInsFinal = skillInsFinal;
+    public void setSkillInsFinal(int n) {
+        this.skillInsFinal = (n < 1) ? 1 : n;
     }
 
-    public void setSkillKnoFinal(int skillKnoFinal) {
-        this.skillKnoFinal = skillKnoFinal;
+    public void setSkillKnoFinal(int n) {
+        this.skillKnoFinal = (n < 1) ? 1 : n;
     }
 
-    public void setSkillChaFinal(int skillChaFinal) {
-        this.skillChaFinal = skillChaFinal;
+    public void setSkillChaFinal(int n) {
+        this.skillChaFinal = (n < 1) ? 1 : n;
     }
 }

@@ -12,22 +12,22 @@ public class Untargot extends Human {
         setSubraceID(102);
 
         //Sets Subrace Attributes
-        setStrSubrace(5);
-        setConSubrace(5);
-        setDexSubrace(5);
-        setFocSubrace(5);
-        setIntSubrace(5);
-        setWitSubrace(5);
+        setStrSubrace(genRandomAttributeRange(5));
+        setDexSubrace(genRandomAttributeRange(5));
+        setConSubrace(genRandomAttributeRange(2));
+        setWitSubrace(genRandomAttributeRange(1));
+        setFocSubrace(genRandomAttributeRange(1));
+        setIntSubrace(genRandomAttributeRange(1));
 
         //Sets Subrace Skills
-        setSkillAthSubrace(5);
-        setSkillEndSubrace(5);
-        setSkillSurSubrace(5);
-        setSkillPerSubrace(5);
-        setSkillResSubrace(5);
-        setSkillRefSubrace(5);
-        setSkillInsSubrace(5);
-        setSkillKnoSubrace(5);
-        setSkillChaSubrace(5);
+        setSkillAthSubrace(genRandomSkillRange(2));
+        setSkillEndSubrace(genRandomSkillRange(2));
+        setSkillSurSubrace(genRandomSkillRange(4));
+        setSkillPerSubrace(genRandomSkillRange(9));
+        setSkillResSubrace(genRandomSkillRange(4));
+        setSkillRefSubrace(genRandomSkillRange(6));
+        setSkillInsSubrace(genRandomSkillRange(3));
+        setSkillKnoSubrace(genRandomSkillRange(9));
+        setSkillChaSubrace(genRandomSkillRange(6));
     }
 }

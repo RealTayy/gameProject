@@ -1,13 +1,13 @@
-package races.human;
+package races.goblin;
 
 import races.Race;
 
-public abstract class Human extends Race {
+public abstract class Goblin extends Race {
 
-    public Human() {
+    public Goblin(){
         //Sets Race Name and ID
-        setRaceName("Human");
-        setRaceID(1);
+        setRaceName("Goblin");
+        setRaceID(4);
 
         //Sets Race Attributes
         setStrRace(genRandomAttributeRange(4));

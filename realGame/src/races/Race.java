@@ -1,6 +1,12 @@
 package races;
 
+import exceptions.IllegalSubRaceID;
 import exceptions.OutOfRange;
+import races.elf.subclass.Chosen;
+import races.elf.subclass.WoodElf;
+import races.goblin.subclass.DeepGoblin;
+import races.human.subclass.Dominion;
+import races.human.subclass.Untargot;
 
 import java.util.Random;
 
@@ -21,27 +27,43 @@ public abstract class Race {
      * Race ID master list:
      * 1    Human
      * 2    Elf
+     * 3    Dwarf
+     * 4    Goblin
      *
      * Subrace ID masterList
      * 101  Dominion    (Human)
      * 102  Untargot    (Human)
      * 201  Chosen      (Elf)
-     * 202  Wood        (Elf)
+     * 202  WoodElf     (Elf)
+     * 401  Deep Goblin (Goblin)
+     * 402
+     *
      */
 
     public String raceName = "none";
+
+    public Race genRace(int subraceID) {
+        switch (subraceID) {
+            case 101: return new Dominion();
+            case 102: return new Untargot();
+            case 201: return new Chosen();
+            case 202: return new WoodElf();
+            case 401: return new DeepGoblin();
+            default: throw new IllegalSubRaceID(subraceID);
+        }
+    }
+
     public int raceID = -1;
-
     public String subraceName = "none";
-    public int subraceID = -1;
 
+    public int subraceID = -1;
     public int strRace = 0, strSubrace = 0;
     public int conRace = 0, conSubrace = 0;
     public int dexRace = 0, dexSubrace = 0;
     public int focRace = 0, focSubrace = 0;
     public int intRace = 0, intSubrace = 0;
-    public int witRace = 0, witSubrace = 0;
 
+    public int witRace = 0, witSubrace = 0;
     public int skillAthRace = 0, skillAthSubrace = 0;
     public int skillEndRace = 0, skillEndSubrace = 0;
     public int skillSurRace = 0, skillSurSubrace = 0;
@@ -50,12 +72,13 @@ public abstract class Race {
     public int skillRefRace = 0, skillRefSubrace = 0;
     public int skillInsRace = 0, skillInsSubrace = 0;
     public int skillKnoRace = 0, skillKnoSubrace = 0;
+
     public int skillChaRace = 0, skillChaSubrace = 0;
-
     final int lowerRaceRange = 0;
-    final int upperRaceRange = 10;
 
+    final int upperRaceRange = 10;
     final int lowerSubraceRange = 0;
+
     final int upperSubraceRange = 10;
 
     public int genRandomSkillRange(int base) {

@@ -1,25 +1,25 @@
 import creatures.entity.Entity;
-import races.elf.subclass.*;
+import creatures.monster.Monster;
+import creatures.monster.goblin.mountain.DeepGoblinBigBoss;
 import races.human.subclass.*;
-
-import java.util.Arrays;
 
 public class PlayerInterface {
 
     public static void main(String[] args) {
-        Entity testEntity = new Entity(new Dominion(), 2, 80);
-        testEntity.setGenderID('F');
+        Entity testEntity = new Entity(101, 5, 50);
         testEntity.printInfo();
 
-        Entity testEntity2 = new Entity(new Wood(), 2, 80);
-        testEntity2.printInfo();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
+        Monster testMonster = new DeepGoblinBigBoss(5);
+        testMonster.printInfo();
 
 
     }
 
 /*
-setFinalAttributesAndSkills and Skills in Entity from Creatures abstract method
-
 
 ==Attributes==
 str Str 123456
