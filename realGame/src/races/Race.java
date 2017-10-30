@@ -1,11 +1,17 @@
 package races;
 
+import exceptions.IllegalSubRaceID;
 import exceptions.OutOfRange;
+import races.elf.subclass.Chosen;
+import races.elf.subclass.WoodElf;
+import races.goblin.subclass.DeepGoblin;
+import races.human.subclass.Dominion;
+import races.human.subclass.Untargot;
 
 import java.util.Random;
 
 /**
- * The {@Race} Abstract class contains all the pointers and variables for all Race instances
+ * The {@code Race} Abstract class contains all the pointers and variables for all Race instances
  * These include:
  * >Race ID & Names
  * >Race Attributes
@@ -16,22 +22,37 @@ import java.util.Random;
  */
 
 public abstract class Race {
+
     /**
      * Race and Subrace Master List
      * Race ID master list:
      * 1    Human
      * 2    Elf
+     * 3    Dwarf
+     * 4    Goblin
      *
      * Subrace ID masterList
      * 101  Dominion    (Human)
      * 102  Untargot    (Human)
      * 201  Chosen      (Elf)
-     * 202  Wood        (Elf)
+     * 202  WoodElf     (Elf)
+     * 401  Deep Goblin (Goblin)
+     * 402
      */
+
+    public Race genRace(int subraceID) {
+        switch (subraceID) {
+            case 101: return new Dominion();
+            case 102: return new Untargot();
+            case 201: return new Chosen();
+            case 202: return new WoodElf();
+            case 401: return new DeepGoblin();
+            default: throw new IllegalSubRaceID(subraceID);
+        }
+    }
 
     public String raceName = "none";
     public int raceID = -1;
-
     public String subraceName = "none";
     public int subraceID = -1;
 
@@ -53,11 +74,23 @@ public abstract class Race {
     public int skillChaRace = 0, skillChaSubrace = 0;
 
     final int lowerRaceRange = 0;
-    final int upperRaceRange = 10;
 
+    final int upperRaceRange = 10;
     final int lowerSubraceRange = 0;
+
     final int upperSubraceRange = 10;
 
+    /**
+     * Takes base arguement and then creates a range based on the base and variance.
+     * Randomly grabs a number in that range and returns it. This is how things are calculated:
+     *      lowerBound = base - variance
+     *      upperBound = base + variance
+     *
+     * The limit for lowerBound is 0. The limit for upperBound = 10.
+     *
+     * @param base the median of the range in which to randomly generate a number from.
+     * @return Integer that ranges from (0-5) depending on the base
+     */
     public int genRandomSkillRange(int base) {
         if (base < 0 || base > 10) {
             throw new OutOfRange(base, 0, 10);
@@ -70,7 +103,17 @@ public abstract class Race {
         Random rand = new Random();
         return rand.nextInt(range + 1) + lowerBound;
     }
-
+    /**
+     * Takes base arguement and then creates a range based on the base and variance.
+     * Randomly grabs a number in that range and returns it. This is how things are calculated:
+     *      lowerBound = base - variance
+     *      upperBound = base + variance
+     *
+     * The limit for lowerBound is 0. The limit for upperBound 5.
+     *
+     * @param base the median of the range in which to randomly generate a number from.
+     * @return Integer that ranges from (0-5) depending on the base
+     */
     public int genRandomAttributeRange(int base) {
         if (base < 0 || base > 5) {
             throw new OutOfRange(base, 0, 5);

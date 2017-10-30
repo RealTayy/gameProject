@@ -1,21 +1,31 @@
+import creatures.Creature;
 import creatures.entity.Entity;
+import party.Party;
 
 public class PlayerInterface {
 
     public static void main(String[] args) {
-        Entity testEntity = new Entity(2, 10);
-        testEntity.printInfo();
+        Creature oliverKing = new Entity(101, 5, 50);
+        oliverKing.setName("Oliver King");
 
+        Creature liliVStrunk = new Entity(102, 5, 50);
+        liliVStrunk.setName("Lilith V Struk");
+        liliVStrunk.setGenderID('F');
+
+        Creature hannsGunn = new Entity(202, 5, 50);
+        hannsGunn.setName("Hanns Gunn");
+
+
+        Party curParty = new Party();
+        curParty.addMember(oliverKing);
+        curParty.addMember(liliVStrunk);
+        curParty.addMember(hannsGunn);
+        curParty.printInfo();
+
+        curParty.slot(1).printInfo();
     }
 
 /*
-
-make sure all uses updateCurrentTotalRankAtrSkl(); is logical and in correct spots...
-
-improve add random skill/attribute rank
-
-fix how current skill rank is calculated
-
 
 ==Attributes==
 str Str 123456
